@@ -1,0 +1,72 @@
+"""SQLAlchemy ORM model for Task (self-referential)."""
+from __future__ import annotations
+
+import enum
+from typing import TYPE_CHECKING, List, Optional
+
+from sqlalchemy import Date, Enum, ForeignKey, JSON, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.attachment import Attachment
+    from app.models.bug import Bug
+    from app.models.project import Project
+
+
+class TaskStatus(str, enum.Enum):
+    open = "open"
+    in_progress = "in_progress"
+    resolved = "resolved"
+    closed = "closed"
+
+
+class Task(Base):
+    """Task entity with self-referential parent/child hierarchy."""
+
+    __tablename__ = "tasks"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    project_id: Mapped[int] = mapped_column(
+        ForeignKey("projects.id", ondelete="CASCADE"), nullable=False
+    )
+    parent_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("tasks.id", ondelete="CASCADE"), nullable=True
+    )
+    name: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    start_date: Mapped[Optional[str]] = mapped_column(Date, nullable=True)
+    end_date: Mapped[Optional[str]] = mapped_column(Date, nullable=True)
+    assignees: Mapped[Optional[list]] = mapped_column(JSON, nullable=True, default=list)
+    status: Mapped[TaskStatus] = mapped_column(
+        Enum(TaskStatus),
+        default=TaskStatus.open,
+        server_default=TaskStatus.open.value,
+        nullable=False,
+    )
+
+    # Relationships
+    project: Mapped["Project"] = relationship("Project", back_populates="tasks")
+    parent: Mapped[Optional["Task"]] = relationship(
+        "Task", remote_side="Task.id", back_populates="subtasks"
+    )
+    subtasks: Mapped[List["Task"]] = relationship(
+        "Task",
+        back_populates="parent",
+        cascade="all, delete-orphan",
+        lazy="select",
+    )
+    bugs: Mapped[List["Bug"]] = relationship(
+        "Bug",
+        back_populates="task",
+        cascade="all, delete-orphan",
+        lazy="select",
+    )
+    attachments: Mapped[List["Attachment"]] = relationship(
+        "Attachment",
+        back_populates="task",
+        cascade="all, delete-orphan",
+        foreign_keys="[Attachment.task_id]",
+        lazy="select",
+    )

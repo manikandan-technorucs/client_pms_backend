@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+aiomysql
+alembic
+pydantic
+pydantic-settings
+python-multipart
+python-dotenv
+aiofiles
+
+passlib[bcrypt]
+PyJWT
