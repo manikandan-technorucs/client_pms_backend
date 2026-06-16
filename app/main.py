@@ -1,40 +1,52 @@
 """FastAPI application entrypoint."""
 from __future__ import annotations
 
-import os
+import sys
+import asyncio
 
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+import sentry_sdk
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+from loguru import logger
 
-from app.routers import auth, bugs, projects, tasks
+from app.core.config import settings
+from app.routers import auth, bugs, projects, tasks, attachments
 
-UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# Initialize Sentry
+if settings.SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=settings.SENTRY_DSN,
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
+
+# Setup Loguru
+logger.remove()
+logger.add(sys.stderr, format="{time} {level} {message}", level="INFO")
 
 app = FastAPI(
-    title="TechnoRUCS PMS API",
+    title=settings.PROJECT_NAME,
     description="Project Management System — Projects, Tasks, Bugs with file attachments.",
-    version="1.0.0",
+    version=settings.VERSION,
 )
 
-# CORS — allow Vite dev server
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=settings.cors_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Serve uploaded files as static assets
-app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 # Register routers
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(projects.router, prefix="/api/v1")
 app.include_router(tasks.router, prefix="/api/v1")
 app.include_router(bugs.router, prefix="/api/v1")
+app.include_router(attachments.router, prefix="/api/v1")
 
 
 @app.get("/", tags=["Health"])

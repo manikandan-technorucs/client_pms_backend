@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import List, Optional, Sequence
 
 from fastapi import UploadFile
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -84,9 +84,33 @@ async def update_bug(
 
 
 async def delete_bug(session: AsyncSession, bug_id: int) -> bool:
-    """Delete a bug (cascades to sub-bugs and attachments)."""
-    bug = await get_bug(session, bug_id)
-    if bug is None:
+    """Delete a bug using an optimized DELETE statement.
+
+    DB CASCADE handles sub-bugs and attachment rows. We only need to
+    fetch attachment file paths for physical cleanup — no full ORM load.
+    """
+    # Lightweight existence check
+    exists = await session.scalar(
+        select(Bug.id).where(Bug.id == bug_id)
+    )
+    if exists is None:
         return False
-    await session.delete(bug)
+
+    # Collect attachment file paths for physical cleanup
+    from app.models.attachment import Attachment
+    att_result = await session.execute(
+        select(Attachment.file_path).where(Attachment.bug_id == bug_id)
+    )
+    file_paths = [row[0] for row in att_result.fetchall()]
+
+    # Raw DELETE — CASCADE handles sub-bugs and their attachments in DB
+    await session.execute(delete(Bug).where(Bug.id == bug_id))
+
+    # Remove physical files concurrently (non-blocking)
+    if file_paths:
+        import asyncio
+        await asyncio.gather(
+            *(attachment_service._remove_file_async(p) for p in file_paths)
+        )
+
     return True

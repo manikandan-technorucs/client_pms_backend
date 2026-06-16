@@ -34,8 +34,25 @@ class ProjectUpdate(BaseModel):
     status: Optional[ProjectStatus] = None
 
 
+class ProjectListRead(ProjectBase):
+    """Lightweight schema for the project list endpoint.
+
+    Excludes tasks and bugs arrays — they are NOT needed on the list page
+    and loading them causes a massive N+1 query load with large datasets.
+    Only attachments are included (needed for attachment count badge).
+    """
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    attachments: List[AttachmentRead] = []
+
+
 class ProjectRead(ProjectBase):
-    """Schema for reading a project."""
+    """Full schema for reading a single project (detail view).
+
+    Includes all related data — used only for the detail/create/update endpoints.
+    """
 
     model_config = ConfigDict(from_attributes=True)
 

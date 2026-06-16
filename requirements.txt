@@ -11,3 +11,11 @@ aiofiles
 
 passlib[bcrypt]
 PyJWT
+azure-storage-blob
+aiohttp
+loguru
+sentry-sdk
+gunicorn
+pytest
+pytest-asyncio
+httpx

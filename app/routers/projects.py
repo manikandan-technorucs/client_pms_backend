@@ -1,31 +1,53 @@
 """Projects router — CRUD endpoints."""
 from __future__ import annotations
 
+import json
 import os
-from typing import List
+from typing import List, Optional
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
+
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Response, UploadFile, status
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from sqlalchemy import select
 
 from app.database import get_db
 from app.models.attachment import Attachment
+from app.models.bug import Bug
+from app.models.task import Task
 from app.schemas.attachment import AttachmentRead
-from app.schemas.project import ProjectCreate, ProjectRead, ProjectUpdate
+from app.schemas.project import ProjectCreate, ProjectListRead, ProjectRead, ProjectUpdate
 from app.services import attachment_service, project_service
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
 
-@router.get("/", response_model=List[ProjectRead])
+@router.get("/", response_model=List[ProjectListRead])
 async def list_projects(session: AsyncSession = Depends(get_db)):
-    """List all projects."""
+    """List all projects (lightweight — attachments only, no tasks/bugs).
+
+    Using ProjectListRead avoids N+1 eager-load of tasks+bugs for every row,
+    keeping this endpoint well within the 200ms target even at scale.
+    """
     return await project_service.list_projects(session)
 
 
-import json
-from typing import Optional
+@router.get("/stats")
+async def get_project_stats(response: Response, session: AsyncSession = Depends(get_db)):
+    """Get global stats across all projects.
+
+    Uses two sequential scalar queries — safe with SQLAlchemy AsyncSession
+    (which prohibits concurrent operations on a single session instance).
+    Both queries are fast due to indexed tables and COUNT(*) optimization.
+    Cache-Control header lets proxies/browsers cache the result for 60 seconds.
+    """
+    total_tasks = await session.scalar(select(func.count(Task.id)))
+    total_bugs = await session.scalar(select(func.count(Bug.id)))
+
+    # Allow client/proxy to cache for 60 seconds
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return {"totalTasks": total_tasks or 0, "totalBugs": total_bugs or 0}
+
+
 
 @router.post("/", response_model=ProjectRead, status_code=status.HTTP_201_CREATED)
 async def create_project(
@@ -43,35 +65,25 @@ async def create_project(
         description=description,
         start_date=start_date if start_date else None,
         end_date=end_date if end_date else None,
-        status=project_status if project_status else "Open",
+        status=project_status if project_status else "open",
     )
     valid_files = [f for f in new_files if f.filename]
     return await project_service.create_project(
         session, data, valid_files if valid_files else None
     )
 
-@router.get("/stats")
-async def get_project_stats(session: AsyncSession = Depends(get_db)):
-    """Get global stats across all projects."""
-    from sqlalchemy import select, func
-    from app.models.task import Task
-    from app.models.bug import Bug
-    
-    total_tasks = await session.scalar(select(func.count(Task.id)))
-    total_bugs = await session.scalar(select(func.count(Bug.id)))
-    
-    return {"totalTasks": total_tasks or 0, "totalBugs": total_bugs or 0}
 
 @router.get("/{project_id}", response_model=ProjectRead)
 async def get_project(
     project_id: int,
     session: AsyncSession = Depends(get_db),
 ):
-    """Get a project by ID."""
+    """Get a project by ID (full detail including tasks/bugs/attachments)."""
     project = await project_service.get_project(session, project_id)
     if project is None:
         raise HTTPException(status_code=404, detail="Project not found")
     return project
+
 
 @router.put("/{project_id}", response_model=ProjectRead)
 async def update_project(
@@ -98,7 +110,7 @@ async def update_project(
         end_date=end_date if end_date else None,
         status=project_status if project_status else None,
     )
-    
+
     valid_files = [f for f in new_files if f.filename]
     project = await project_service.update_project(
         session, project_id, data, keep_ids, valid_files if valid_files else None
@@ -167,9 +179,5 @@ async def delete_project_attachment(
     if attachment is None:
         raise HTTPException(status_code=404, detail="Attachment not found")
 
-    if os.path.exists(attachment.file_path):
-        try:
-            os.remove(attachment.file_path)
-        except OSError:
-            pass
+    await attachment_service._remove_file_async(attachment.file_path)
     await session.delete(attachment)

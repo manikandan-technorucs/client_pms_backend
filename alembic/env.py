@@ -3,23 +3,24 @@ from __future__ import annotations
 
 import asyncio
 import os
+import sys
 from logging.config import fileConfig
 
-from dotenv import load_dotenv
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
 
-# Load .env so DATABASE_URL is available
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
-
+from app.core.config import settings
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-# Override sqlalchemy.url from environment if available
-db_url = os.getenv("DATABASE_URL")
+db_url = settings.DATABASE_URL
 if db_url:
     # Escape % for configparser interpolation (e.g. %40 → %%40)
     config.set_main_option("sqlalchemy.url", db_url.replace("%", "%%"))
@@ -57,10 +58,17 @@ def do_run_migrations(connection):
 
 async def run_async_migrations() -> None:
     """Run migrations in 'online' mode using async engine."""
+    connect_args = {}
+    if "azure.com" in db_url:
+        import ssl
+        ssl_context = ssl.create_default_context()
+        connect_args["ssl"] = ssl_context
+
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        connect_args=connect_args,
     )
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)

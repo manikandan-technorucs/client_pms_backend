@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import List, Optional, Sequence
 
 from fastapi import UploadFile
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -20,21 +20,6 @@ def _load_options():
         selectinload(Task.subtasks).selectinload(Task.attachments),
         selectinload(Task.subtasks).selectinload(Task.subtasks).selectinload(Task.attachments),
     ]
-
-
-async def list_tasks(
-    session: AsyncSession, project_id: int, parent_id: Optional[int] = None
-) -> List[Task]:
-    """Return tasks filtered by project and optional parent."""
-    stmt = (
-        select(Task)
-        .options(*_load_options())
-        .where(Task.project_id == project_id)
-        .where(Task.parent_id == parent_id)
-        .order_by(Task.id)
-    )
-    result = await session.execute(stmt)
-    return list(result.scalars().all())
 
 
 async def list_all_tasks(session: AsyncSession, project_id: int) -> List[Task]:
@@ -99,9 +84,33 @@ async def update_task(
 
 
 async def delete_task(session: AsyncSession, task_id: int) -> bool:
-    """Delete a task (cascades to subtasks and attachments)."""
-    task = await get_task(session, task_id)
-    if task is None:
+    """Delete a task using an optimized DELETE statement.
+
+    DB CASCADE handles subtasks and attachment rows. We only need to
+    fetch attachment file paths for physical cleanup — no full ORM load.
+    """
+    # Lightweight existence check
+    exists = await session.scalar(
+        select(Task.id).where(Task.id == task_id)
+    )
+    if exists is None:
         return False
-    await session.delete(task)
+
+    # Collect attachment file paths for physical cleanup
+    from app.models.attachment import Attachment
+    att_result = await session.execute(
+        select(Attachment.file_path).where(Attachment.task_id == task_id)
+    )
+    file_paths = [row[0] for row in att_result.fetchall()]
+
+    # Raw DELETE — CASCADE handles subtasks and their attachments in DB
+    await session.execute(delete(Task).where(Task.id == task_id))
+
+    # Remove physical files concurrently (non-blocking)
+    if file_paths:
+        import asyncio
+        await asyncio.gather(
+            *(attachment_service._remove_file_async(p) for p in file_paths)
+        )
+
     return True

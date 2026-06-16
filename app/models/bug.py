@@ -29,13 +29,19 @@ class Bug(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id", ondelete="CASCADE"), nullable=False
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,  # ← Critical: speeds up GET /bugs/?project_id=X queries
     )
     task_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("tasks.id", ondelete="SET NULL"), nullable=True
+        ForeignKey("tasks.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,  # ← Speeds up bug-to-task join lookups
     )
     parent_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("bugs.id", ondelete="CASCADE"), nullable=True
+        ForeignKey("bugs.id", ondelete="CASCADE"),
+        nullable=True,
+        index=True,  # ← Speeds up sub-bug hierarchy lookups
     )
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
@@ -60,12 +66,12 @@ class Bug(Base):
         "Bug",
         back_populates="parent",
         cascade="all, delete-orphan",
-        lazy="select",
+        lazy="selectin",
     )
     attachments: Mapped[List["Attachment"]] = relationship(
         "Attachment",
         back_populates="bug",
         cascade="all, delete-orphan",
         foreign_keys="[Attachment.bug_id]",
-        lazy="select",
+        lazy="selectin",
     )

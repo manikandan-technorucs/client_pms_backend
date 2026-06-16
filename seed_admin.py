@@ -1,4 +1,8 @@
+import sys
 import asyncio
+
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import AsyncSessionLocal
 from app.models.user import User, UserRole

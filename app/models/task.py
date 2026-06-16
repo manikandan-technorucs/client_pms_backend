@@ -29,10 +29,14 @@ class Task(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id", ondelete="CASCADE"), nullable=False
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,  # ← Critical: speeds up GET /tasks/?project_id=X queries
     )
     parent_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("tasks.id", ondelete="CASCADE"), nullable=True
+        ForeignKey("tasks.id", ondelete="CASCADE"),
+        nullable=True,
+        index=True,  # ← Critical: speeds up subtask hierarchy lookups
     )
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
@@ -55,7 +59,7 @@ class Task(Base):
         "Task",
         back_populates="parent",
         cascade="all, delete-orphan",
-        lazy="select",
+        lazy="selectin",
     )
     bugs: Mapped[List["Bug"]] = relationship(
         "Bug",
@@ -68,5 +72,5 @@ class Task(Base):
         back_populates="task",
         cascade="all, delete-orphan",
         foreign_keys="[Attachment.task_id]",
-        lazy="select",
+        lazy="selectin",
     )
