@@ -32,6 +32,24 @@ async def create_task(
     return await task_service.create_task(session, data, performed_by=current_user)
 
 
+@router.post("/import", status_code=status.HTTP_201_CREATED)
+async def import_csv(
+    project_id: int = Form(...),
+    file: UploadFile = File(...),
+    session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
+):
+    """Import tasks and subtasks from a CSV file."""
+    if not file.filename.endswith(".csv"):
+        raise HTTPException(status_code=400, detail="Only CSV files are allowed.")
+        
+    created_count = await task_service.import_tasks_from_csv(
+        session, project_id, file, performed_by=current_user
+    )
+    return {"message": f"Successfully imported {created_count} tasks.", "count": created_count}
+
+
+
 @router.get("/{task_id}", response_model=TaskRead)
 async def get_task(
     task_id: int,

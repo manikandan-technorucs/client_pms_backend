@@ -3,7 +3,10 @@ from __future__ import annotations
 
 from typing import List, Optional, Sequence
 
-from fastapi import UploadFile
+import csv
+import io
+
+from fastapi import UploadFile, HTTPException
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -153,3 +156,84 @@ async def delete_task(session: AsyncSession, task_id: int, performed_by: str) ->
         )
 
     return True
+
+
+async def import_tasks_from_csv(
+    session: AsyncSession,
+    project_id: int,
+    file: UploadFile,
+    performed_by: str,
+) -> int:
+    """Parse CSV and create tasks/subtasks. Returns number of created items."""
+    content = await file.read()
+    try:
+        text = content.decode("utf-8-sig")  # handle BOM if present
+    except UnicodeDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid file encoding. Must be UTF-8 CSV.")
+    
+    reader = csv.reader(io.StringIO(text))
+    rows = list(reader)
+    if not rows:
+        raise HTTPException(status_code=400, detail="The uploaded CSV file is empty.")
+    
+    start_idx = 0
+    if len(rows[0]) > 0 and rows[0][0].strip().lower() == "task":
+        start_idx = 1
+        
+    current_parent_task = None
+    tasks_created = 0
+    
+    for row_idx, row in enumerate(rows[start_idx:], start=start_idx + 1):
+        if not row or not any(cell.strip() for cell in row):
+            continue  # ignore empty rows
+            
+        task_name = row[0].strip() if len(row) > 0 else ""
+        subtask_name = row[1].strip() if len(row) > 1 else ""
+        
+        if not task_name and not subtask_name:
+            continue
+            
+        if task_name:
+            # Create a parent task
+            data = TaskCreate(
+                project_id=project_id,
+                name=task_name,
+                status="open"
+            )
+            current_parent_task = Task(**data.model_dump(), created_by=performed_by, updated_by=performed_by)
+            session.add(current_parent_task)
+            await session.flush()  # to get the ID for subtasks
+            tasks_created += 1
+            
+            # If the same row also has a subtask name
+            if subtask_name:
+                sub_data = TaskCreate(
+                    project_id=project_id,
+                    parent_id=current_parent_task.id,
+                    name=subtask_name,
+                    status="open"
+                )
+                sub_task = Task(**sub_data.model_dump(), created_by=performed_by, updated_by=performed_by)
+                session.add(sub_task)
+                tasks_created += 1
+        else:
+            # We have a subtask, but no task name on this row
+            if not current_parent_task:
+                raise HTTPException(
+                    status_code=400, 
+                    detail=f"Row {row_idx}: Found a SubTask '{subtask_name}' but no parent Task was defined above it."
+                )
+            sub_data = TaskCreate(
+                project_id=project_id,
+                parent_id=current_parent_task.id,
+                name=subtask_name,
+                status="open"
+            )
+            sub_task = Task(**sub_data.model_dump(), created_by=performed_by, updated_by=performed_by)
+            session.add(sub_task)
+            tasks_created += 1
+
+    if tasks_created == 0:
+        raise HTTPException(status_code=400, detail="No valid tasks found in the CSV file.")
+        
+    return tasks_created

@@ -1,0 +1,1641 @@
+2026-06-16T13:40:52.8774978Z [2026-06-16 13:40:52 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T13:40:52.8777836Z [2026-06-16 13:40:52 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T13:40:52.8777971Z [2026-06-16 13:40:52 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T13:40:52.9784870Z [2026-06-16 13:40:52 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T13:40:53.0795396Z [2026-06-16 13:40:53 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T13:40:53.1506443Z [2026-06-16 13:40:53 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T13:40:53.5610028Z [2026-06-16 13:40:53 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T13:40:53.8464756Z [2026-06-16 13:40:53 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T13:41:52.6668217Z [2026-06-16 13:41:52 +0000] [10] [INFO] Started server process [10]
+2026-06-16T13:41:52.6678882Z [2026-06-16 13:41:52 +0000] [9] [INFO] Started server process [9]
+2026-06-16T13:41:52.6680972Z [2026-06-16 13:41:52 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T13:41:52.6681110Z [2026-06-16 13:41:52 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T13:41:52.6959928Z [2026-06-16 13:41:52 +0000] [10] [INFO] Application startup complete.
+2026-06-16T13:41:52.6960321Z [2026-06-16 13:41:52 +0000] [9] [INFO] Application startup complete.
+2026-06-16T13:41:52.6987068Z [2026-06-16 13:41:52 +0000] [8] [INFO] Started server process [8]
+2026-06-16T13:41:52.7169186Z [2026-06-16 13:41:52 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T13:41:52.7361290Z [2026-06-16 13:41:52 +0000] [8] [INFO] Application startup complete.
+2026-06-16T13:41:52.8367190Z [2026-06-16 13:41:52 +0000] [7] [INFO] Started server process [7]
+2026-06-16T13:41:52.8378040Z [2026-06-16 13:41:52 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T13:41:52.8467522Z [2026-06-16 13:41:52 +0000] [7] [INFO] Application startup complete.
+2026-06-16T13:45:41.9222315Z [2026-06-16 13:45:41 +0000] [7] [ERROR] Exception in ASGI application
+2026-06-16T13:45:41.9222969Z Traceback (most recent call last):
+2026-06-16T13:45:41.9223001Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T13:45:41.9223020Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T13:45:41.9223039Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9223080Z         self.scope, self.receive, self.send
+2026-06-16T13:45:41.9223098Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9223113Z     )
+2026-06-16T13:45:41.9223129Z     ^
+2026-06-16T13:45:41.9223153Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T13:45:41.9223199Z     return await self.app(scope, receive, send)
+2026-06-16T13:45:41.9223216Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9223236Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T13:45:41.9223253Z     await super().__call__(scope, receive, send)
+2026-06-16T13:45:41.9223271Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T13:45:41.9223288Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T13:45:41.9223307Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T13:45:41.9223327Z     raise exc
+2026-06-16T13:45:41.9223345Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T13:45:41.9223384Z     await self.app(scope, receive, _send)
+2026-06-16T13:45:41.9223403Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+2026-06-16T13:45:41.9223420Z     await self.app(scope, receive, send)
+2026-06-16T13:45:41.9223440Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T13:45:41.9223458Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T13:45:41.9223476Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T13:45:41.9223492Z     raise exc
+2026-06-16T13:45:41.9223510Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T13:45:41.9223527Z     await app(scope, receive, sender)
+2026-06-16T13:45:41.9223547Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T13:45:41.9223579Z     await self.app(scope, receive, send)
+2026-06-16T13:45:41.9223598Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T13:45:41.9223615Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T13:45:41.9223634Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T13:45:41.9223654Z     await route.handle(scope, receive, send)
+2026-06-16T13:45:41.9223672Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T13:45:41.9223689Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T13:45:41.9223708Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T13:45:41.9223752Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T13:45:41.9223771Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T13:45:41.9223788Z     await original_route.handle(scope, receive, send)
+2026-06-16T13:45:41.9223806Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T13:45:41.9223823Z     await app(scope, receive, send)
+2026-06-16T13:45:41.9223841Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T13:45:41.9223859Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T13:45:41.9223878Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T13:45:41.9223894Z     raise exc
+2026-06-16T13:45:41.9223912Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T13:45:41.9223949Z     await app(scope, receive, sender)
+2026-06-16T13:45:41.9223967Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T13:45:41.9223983Z     response = await f(request)
+2026-06-16T13:45:41.9223999Z                ^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224017Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 683, in app
+2026-06-16T13:45:41.9224034Z     raw_response = await run_endpoint_function(
+2026-06-16T13:45:41.9224051Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224066Z     ...<3 lines>...
+2026-06-16T13:45:41.9224081Z     )
+2026-06-16T13:45:41.9224096Z     ^
+2026-06-16T13:45:41.9224115Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 337, in run_endpoint_function
+2026-06-16T13:45:41.9224132Z     return await dependant.call(**values)
+2026-06-16T13:45:41.9224165Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224183Z   File "/app/app/routers/auth.py", line 26, in login
+2026-06-16T13:45:41.9224201Z     if not user or not verify_password(form_data.password, user.hashed_password):
+2026-06-16T13:45:41.9224218Z                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224235Z   File "/app/app/core/security.py", line 53, in verify_password
+2026-06-16T13:45:41.9224550Z     return pwd_context.verify(plain_password, hashed_password)
+2026-06-16T13:45:41.9224596Z            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224615Z   File "/usr/local/lib/python3.14/site-packages/passlib/context.py", line 2347, in verify
+2026-06-16T13:45:41.9224632Z     return record.verify(secret, hash, **kwds)
+2026-06-16T13:45:41.9224648Z            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224667Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 792, in verify
+2026-06-16T13:45:41.9224683Z     return consteq(self._calc_checksum(secret), chk)
+2026-06-16T13:45:41.9224699Z                    ~~~~~~~~~~~~~~~~~~~^^^^^^^^
+2026-06-16T13:45:41.9224718Z   File "/usr/local/lib/python3.14/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+2026-06-16T13:45:41.9224734Z     self._stub_requires_backend()
+2026-06-16T13:45:41.9224771Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T13:45:41.9224790Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+2026-06-16T13:45:41.9224806Z     cls.set_backend()
+2026-06-16T13:45:41.9224821Z     ~~~~~~~~~~~~~~~^^
+2026-06-16T13:45:41.9224839Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+2026-06-16T13:45:41.9224856Z     return owner.set_backend(name, dryrun=dryrun)
+2026-06-16T13:45:41.9224872Z            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224890Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+2026-06-16T13:45:41.9224907Z     return cls.set_backend(name, dryrun=dryrun)
+2026-06-16T13:45:41.9224923Z            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9224941Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+2026-06-16T13:45:41.9224990Z     cls._set_backend(name, dryrun)
+2026-06-16T13:45:41.9225005Z     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9225023Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+2026-06-16T13:45:41.9225040Z     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+2026-06-16T13:45:41.9225058Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9225076Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+2026-06-16T13:45:41.9225093Z     ok = loader(**kwds)
+2026-06-16T13:45:41.9225112Z   File "/usr/local/lib/python3.14/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+2026-06-16T13:45:41.9225129Z     return mixin_cls._finalize_backend_mixin(name, dryrun)
+2026-06-16T13:45:41.9225145Z            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9225183Z   File "/usr/local/lib/python3.14/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+2026-06-16T13:45:41.9225199Z     if detect_wrap_bug(IDENT_2A):
+2026-06-16T13:45:41.9225216Z        ~~~~~~~~~~~~~~~^^^^^^^^^^
+2026-06-16T13:45:41.9225234Z   File "/usr/local/lib/python3.14/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+2026-06-16T13:45:41.9225250Z     if verify(secret, bug_hash):
+2026-06-16T13:45:41.9225266Z        ~~~~~~^^^^^^^^^^^^^^^^^^
+2026-06-16T13:45:41.9225284Z   File "/usr/local/lib/python3.14/site-packages/passlib/utils/handlers.py", line 792, in verify
+2026-06-16T13:45:41.9225301Z     return consteq(self._calc_checksum(secret), chk)
+2026-06-16T13:45:41.9225317Z                    ~~~~~~~~~~~~~~~~~~~^^^^^^^^
+2026-06-16T13:45:41.9225336Z   File "/usr/local/lib/python3.14/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+2026-06-16T13:45:41.9225352Z     hash = _bcrypt.hashpw(secret, config)
+2026-06-16T13:45:41.9225393Z ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16T13:48:45.9539509Z [Previous Container] [2026-06-16 13:48:44 +0000] [1] [INFO] Handling signal: term
+2026-06-16T13:48:46.5962372Z [Previous Container] [2026-06-16 13:48:46 +0000] [10] [INFO] Shutting down
+2026-06-16T13:48:46.5972147Z [Previous Container] [2026-06-16 13:48:46 +0000] [7] [INFO] Shutting down
+2026-06-16T13:48:46.5986600Z [Previous Container] [2026-06-16 13:48:46 +0000] [9] [INFO] Shutting down
+2026-06-16T13:48:46.6161026Z [Previous Container] [2026-06-16 13:48:46 +0000] [8] [INFO] Shutting down
+2026-06-16T13:48:46.6963907Z [Previous Container] [2026-06-16 13:48:46 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T13:48:46.6964256Z [Previous Container] [2026-06-16 13:48:46 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T13:48:46.6964326Z [Previous Container] [2026-06-16 13:48:46 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T13:48:46.6964347Z [Previous Container] [2026-06-16 13:48:46 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T13:48:46.8305566Z [Previous Container] [2026-06-16 13:48:46 +0000] [7] [INFO] Waiting for application shutdown.
+2026-06-16T13:48:46.8482243Z [Previous Container] [2026-06-16 13:48:46 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T13:48:46.8482400Z [Previous Container] [2026-06-16 13:48:46 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T13:48:46.8482423Z [Previous Container] [2026-06-16 13:48:46 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T13:48:46.8482446Z [Previous Container] [2026-06-16 13:48:46 +0000] [7] [INFO] Application shutdown complete.
+2026-06-16T13:48:46.8494807Z [Previous Container] [2026-06-16 13:48:46 +0000] [7] [INFO] Finished server process [7]
+2026-06-16T13:48:46.8899822Z [Previous Container] [2026-06-16 13:48:46 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T13:48:46.8980313Z [Previous Container] [2026-06-16 13:48:46 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T13:48:46.8991420Z [Previous Container] [2026-06-16 13:48:46 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T13:48:46.9500890Z [Previous Container] [2026-06-16 13:48:46 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T13:48:46.9511980Z [Previous Container] [2026-06-16 13:48:46 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T13:48:46.9684756Z [Previous Container] [2026-06-16 13:48:46 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T13:48:47.2618757Z [Previous Container] [2026-06-16 13:48:47 +0000] [1] [INFO] Worker (pid:7) was sent SIGTERM!
+2026-06-16T13:48:47.2901227Z [Previous Container] [2026-06-16 13:48:47 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T13:48:47.2901527Z [Previous Container] [2026-06-16 13:48:47 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T13:48:47.2901552Z [Previous Container] [2026-06-16 13:48:47 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T13:48:47.3921326Z [Previous Container] [2026-06-16 13:48:47 +0000] [1] [INFO] Shutting down: Master
+2026-06-16T13:50:26.3138711Z [2026-06-16 13:50:26 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T13:50:26.3157933Z [2026-06-16 13:50:26 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T13:50:26.3256915Z [2026-06-16 13:50:26 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T13:50:26.3359618Z [2026-06-16 13:50:26 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T13:50:26.4354097Z [2026-06-16 13:50:26 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T13:50:26.4748365Z [2026-06-16 13:50:26 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T13:50:26.7561427Z [2026-06-16 13:50:26 +0000] [11] [INFO] Booting worker with pid: 11
+2026-06-16T13:50:27.2484548Z [2026-06-16 13:50:27 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T13:51:00.9241700Z [2026-06-16 13:51:00 +0000] [11] [INFO] Started server process [11]
+2026-06-16T13:51:00.9336559Z [2026-06-16 13:51:00 +0000] [11] [INFO] Waiting for application startup.
+2026-06-16T13:51:00.9528247Z [2026-06-16 13:51:00 +0000] [11] [INFO] Application startup complete.
+2026-06-16T13:51:00.9845572Z [2026-06-16 13:51:00 +0000] [8] [INFO] Started server process [8]
+2026-06-16T13:51:00.9945795Z [2026-06-16 13:51:00 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T13:51:00.9946173Z [2026-06-16 13:51:00 +0000] [8] [INFO] Application startup complete.
+2026-06-16T13:51:01.0234398Z [2026-06-16 13:51:00 +0000] [10] [INFO] Started server process [10]
+2026-06-16T13:51:01.0330223Z [2026-06-16 13:51:01 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T13:51:01.0442374Z [2026-06-16 13:51:01 +0000] [10] [INFO] Application startup complete.
+2026-06-16T13:51:01.1738492Z [2026-06-16 13:51:01 +0000] [9] [INFO] Started server process [9]
+2026-06-16T13:51:01.1744913Z [2026-06-16 13:51:01 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T13:51:01.1754602Z [2026-06-16 13:51:01 +0000] [9] [INFO] Application startup complete.
+2026-06-16T15:46:24.7681617Z [2026-06-16 15:46:24 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T15:46:24.7860316Z [2026-06-16 15:46:24 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T15:46:24.7860706Z [2026-06-16 15:46:24 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T15:46:24.8285842Z [2026-06-16 15:46:24 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T15:46:24.8788876Z [2026-06-16 15:46:24 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T15:46:24.9895878Z [2026-06-16 15:46:24 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T15:46:25.1806963Z [2026-06-16 15:46:25 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T15:46:25.9949735Z [2026-06-16 15:46:25 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T15:47:10.3859307Z [2026-06-16 15:47:10 +0000] [10] [INFO] Started server process [10]
+2026-06-16T15:47:10.3859981Z [2026-06-16 15:47:10 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T15:47:10.3860383Z [2026-06-16 15:47:10 +0000] [10] [INFO] Application startup complete.
+2026-06-16T15:47:10.3860414Z [2026-06-16 15:47:10 +0000] [7] [INFO] Started server process [7]
+2026-06-16T15:47:10.3860441Z [2026-06-16 15:47:10 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T15:47:10.3860477Z [2026-06-16 15:47:10 +0000] [7] [INFO] Application startup complete.
+2026-06-16T15:47:10.3860528Z [2026-06-16 15:47:10 +0000] [8] [INFO] Started server process [8]
+2026-06-16T15:47:10.3860552Z [2026-06-16 15:47:10 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T15:47:10.3873196Z [2026-06-16 15:47:10 +0000] [8] [INFO] Application startup complete.
+2026-06-16T15:47:10.3873395Z [2026-06-16 15:47:10 +0000] [9] [INFO] Started server process [9]
+2026-06-16T15:47:10.3873425Z [2026-06-16 15:47:10 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T15:47:10.3873453Z [2026-06-16 15:47:10 +0000] [9] [INFO] Application startup complete.
+2026-06-16T15:47:37.2765338Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Handling signal: term
+2026-06-16T15:47:37.3035212Z [Previous Container] [2026-06-16 15:47:37 +0000] [10] [INFO] Shutting down
+2026-06-16T15:47:37.3129810Z [Previous Container] [2026-06-16 15:47:37 +0000] [9] [INFO] Shutting down
+2026-06-16T15:47:37.3315157Z [Previous Container] [2026-06-16 15:47:37 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T15:47:37.3558499Z [Previous Container] [2026-06-16 15:47:37 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T15:47:37.3678746Z [Previous Container] [2026-06-16 15:47:37 +0000] [8] [INFO] Shutting down
+2026-06-16T15:47:37.3732340Z [Previous Container] [2026-06-16 15:47:37 +0000] [11] [INFO] Shutting down
+2026-06-16T15:47:37.4063317Z [Previous Container] [2026-06-16 15:47:37 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T15:47:37.4189347Z [Previous Container] [2026-06-16 15:47:37 +0000] [11] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T15:47:37.4348966Z [Previous Container] [2026-06-16 15:47:37 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T15:47:37.4364397Z [Previous Container] [2026-06-16 15:47:37 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T15:47:37.4369137Z [Previous Container] [2026-06-16 15:47:37 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T15:47:37.4664187Z [Previous Container] [2026-06-16 15:47:37 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T15:47:37.4837477Z [Previous Container] [2026-06-16 15:47:37 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T15:47:37.4938753Z [Previous Container] [2026-06-16 15:47:37 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T15:47:37.5259769Z [Previous Container] [2026-06-16 15:47:37 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T15:47:37.5262979Z [Previous Container] [2026-06-16 15:47:37 +0000] [11] [INFO] Waiting for application shutdown.
+2026-06-16T15:47:37.5539316Z [Previous Container] [2026-06-16 15:47:37 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T15:47:37.5589186Z [Previous Container] [2026-06-16 15:47:37 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T15:47:37.5639286Z [Previous Container] [2026-06-16 15:47:37 +0000] [11] [INFO] Application shutdown complete.
+2026-06-16T15:47:37.5749291Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T15:47:37.5942842Z [Previous Container] [2026-06-16 15:47:37 +0000] [11] [INFO] Finished server process [11]
+2026-06-16T15:47:37.5964750Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T15:47:37.7042956Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T15:47:37.7056831Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Worker (pid:11) was sent SIGTERM!
+2026-06-16T15:47:37.8184698Z [Previous Container] [2026-06-16 15:47:37 +0000] [1] [INFO] Shutting down: Master
+2026-06-16T15:51:50.6263724Z [2026-06-16 15:51:50 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T15:51:50.6268249Z Traceback (most recent call last):
+2026-06-16T15:51:50.6268332Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T15:51:50.6268357Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T15:51:50.6268375Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:50.6268392Z         self.scope, self.receive, self.send
+2026-06-16T15:51:50.6268413Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:50.6268430Z     )
+2026-06-16T15:51:50.6268445Z     ^
+2026-06-16T15:51:50.6268464Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T15:51:50.6268481Z     return await self.app(scope, receive, send)
+2026-06-16T15:51:50.6268543Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:50.6268563Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T15:51:50.6268580Z     await super().__call__(scope, receive, send)
+2026-06-16T15:51:50.6268599Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T15:51:50.6268617Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:50.6268637Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T15:51:50.6268653Z     raise exc
+2026-06-16T15:51:50.6268699Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T15:51:50.6268717Z     await self.app(scope, receive, _send)
+2026-06-16T15:51:50.6268757Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T15:51:50.6268775Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T15:51:50.6268795Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T15:51:50.6268812Z     await self.app(scope, receive, send)
+2026-06-16T15:51:50.6268831Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T15:51:50.6268849Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T15:51:50.6268867Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:50.6268882Z     raise exc
+2026-06-16T15:51:50.6268901Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:50.6268918Z     await app(scope, receive, sender)
+2026-06-16T15:51:50.6268961Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T15:51:50.6268979Z     await self.app(scope, receive, send)
+2026-06-16T15:51:50.6268997Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T15:51:50.6269015Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:50.6269038Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T15:51:50.6269100Z     await route.handle(scope, receive, send)
+2026-06-16T15:51:50.6269120Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T15:51:50.6269137Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T15:51:50.6269174Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T15:51:50.6269192Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T15:51:50.6269246Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T15:51:50.6269263Z     await original_route.handle(scope, receive, send)
+2026-06-16T15:51:50.6269281Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T15:51:50.6269298Z     await app(scope, receive, send)
+2026-06-16T15:51:50.6269316Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T15:51:50.6269335Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T15:51:50.6269354Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:50.6269369Z     raise exc
+2026-06-16T15:51:50.6269402Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:50.6269464Z     await app(scope, receive, sender)
+2026-06-16T15:51:50.6269484Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T15:51:50.6269501Z     response = await f(request)
+2026-06-16T15:51:50.6269517Z                ^^^^^^^^^^^^^^^^
+2026-06-16T15:51:50.6269535Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T15:51:50.6269553Z     content = await serialize_response(
+2026-06-16T15:51:50.6269569Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:50.6269584Z     ...<11 lines>...
+2026-06-16T15:51:50.6269599Z     )
+2026-06-16T15:51:50.6269615Z     ^
+2026-06-16T15:51:50.6269633Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T15:51:50.6269667Z     raise ResponseValidationError(
+2026-06-16T15:51:50.6269683Z     ...<3 lines>...
+2026-06-16T15:51:50.6269699Z     )
+2026-06-16T15:51:50.6269717Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T15:51:50.6293835Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.task.Task object at 0x7e2ff47f50f0>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T15:51:50.6294003Z 
+2026-06-16T15:51:50.6294083Z   File "/app/app/routers/tasks.py", line 46, in update_task
+2026-06-16T15:51:50.6294102Z     PUT /api/v1/tasks/{task_id}
+2026-06-16T15:51:54.7431636Z [2026-06-16 15:51:54 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T15:51:54.7432090Z Traceback (most recent call last):
+2026-06-16T15:51:54.7432122Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T15:51:54.7432199Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T15:51:54.7432218Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:54.7432234Z         self.scope, self.receive, self.send
+2026-06-16T15:51:54.7432251Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:54.7432266Z     )
+2026-06-16T15:51:54.7432281Z     ^
+2026-06-16T15:51:54.7432301Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T15:51:54.7432317Z     return await self.app(scope, receive, send)
+2026-06-16T15:51:54.7432333Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:54.7432352Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T15:51:54.7432385Z     await super().__call__(scope, receive, send)
+2026-06-16T15:51:54.7432403Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T15:51:54.7432421Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:54.7432440Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T15:51:54.7432456Z     raise exc
+2026-06-16T15:51:54.7432474Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T15:51:54.7432490Z     await self.app(scope, receive, _send)
+2026-06-16T15:51:54.7432509Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T15:51:54.7432527Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T15:51:54.7432546Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T15:51:54.7432562Z     await self.app(scope, receive, send)
+2026-06-16T15:51:54.7432597Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T15:51:54.7432616Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T15:51:54.7432634Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:54.7432649Z     raise exc
+2026-06-16T15:51:54.7432667Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:54.7432683Z     await app(scope, receive, sender)
+2026-06-16T15:51:54.7432702Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T15:51:54.7432718Z     await self.app(scope, receive, send)
+2026-06-16T15:51:54.7432736Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T15:51:54.7432753Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:54.7432794Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T15:51:54.7432812Z     await route.handle(scope, receive, send)
+2026-06-16T15:51:54.7432830Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T15:51:54.7432847Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T15:51:54.7432865Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T15:51:54.7432882Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T15:51:54.7432900Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T15:51:54.7432917Z     await original_route.handle(scope, receive, send)
+2026-06-16T15:51:54.7432935Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T15:51:54.7432951Z     await app(scope, receive, send)
+2026-06-16T15:51:54.7432984Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T15:51:54.7433002Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T15:51:54.7433021Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:54.7433036Z     raise exc
+2026-06-16T15:51:54.7433054Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:54.7433071Z     await app(scope, receive, sender)
+2026-06-16T15:51:54.7433089Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T15:51:54.7433105Z     response = await f(request)
+2026-06-16T15:51:54.7433121Z                ^^^^^^^^^^^^^^^^
+2026-06-16T15:51:54.7433139Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T15:51:54.7433156Z     content = await serialize_response(
+2026-06-16T15:51:54.7433193Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:54.7433209Z     ...<11 lines>...
+2026-06-16T15:51:54.7433225Z     )
+2026-06-16T15:51:54.7433239Z     ^
+2026-06-16T15:51:54.7433258Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T15:51:54.7433275Z     raise ResponseValidationError(
+2026-06-16T15:51:54.7433291Z     ...<3 lines>...
+2026-06-16T15:51:54.7433305Z     )
+2026-06-16T15:51:54.7433323Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T15:51:54.7433675Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.task.Task object at 0x7e2ff4738d70>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T15:51:54.7433693Z 
+2026-06-16T15:51:54.7433711Z   File "/app/app/routers/tasks.py", line 46, in update_task
+2026-06-16T15:51:54.7433727Z     PUT /api/v1/tasks/{task_id}
+2026-06-16T15:51:59.8414965Z [2026-06-16 15:51:59 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T15:51:59.8415501Z Traceback (most recent call last):
+2026-06-16T15:51:59.8415540Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T15:51:59.8415561Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T15:51:59.8415578Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:59.8415597Z         self.scope, self.receive, self.send
+2026-06-16T15:51:59.8415667Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:59.8415686Z     )
+2026-06-16T15:51:59.8415701Z     ^
+2026-06-16T15:51:59.8415721Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T15:51:59.8415743Z     return await self.app(scope, receive, send)
+2026-06-16T15:51:59.8415759Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:59.8415778Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T15:51:59.8415795Z     await super().__call__(scope, receive, send)
+2026-06-16T15:51:59.8415813Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T15:51:59.8415831Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:59.8415850Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T15:51:59.8415895Z     raise exc
+2026-06-16T15:51:59.8415914Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T15:51:59.8415931Z     await self.app(scope, receive, _send)
+2026-06-16T15:51:59.8415950Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T15:51:59.8415968Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T15:51:59.8415987Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T15:51:59.8416004Z     await self.app(scope, receive, send)
+2026-06-16T15:51:59.8416023Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T15:51:59.8416041Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T15:51:59.8416059Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:59.8416095Z     raise exc
+2026-06-16T15:51:59.8416114Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:59.8416131Z     await app(scope, receive, sender)
+2026-06-16T15:51:59.8416150Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T15:51:59.8416167Z     await self.app(scope, receive, send)
+2026-06-16T15:51:59.8416185Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T15:51:59.8416202Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:51:59.8416221Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T15:51:59.8416238Z     await route.handle(scope, receive, send)
+2026-06-16T15:51:59.8416256Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T15:51:59.8416274Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T15:51:59.8416316Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T15:51:59.8416334Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T15:51:59.8416352Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T15:51:59.8416369Z     await original_route.handle(scope, receive, send)
+2026-06-16T15:51:59.8416387Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T15:51:59.8416403Z     await app(scope, receive, send)
+2026-06-16T15:51:59.8416421Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T15:51:59.8416440Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T15:51:59.8416458Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:51:59.8416473Z     raise exc
+2026-06-16T15:51:59.8416513Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:51:59.8416530Z     await app(scope, receive, sender)
+2026-06-16T15:51:59.8416548Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T15:51:59.8416564Z     response = await f(request)
+2026-06-16T15:51:59.8416580Z                ^^^^^^^^^^^^^^^^
+2026-06-16T15:51:59.8416598Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T15:51:59.8416615Z     content = await serialize_response(
+2026-06-16T15:51:59.8416631Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:51:59.8416647Z     ...<11 lines>...
+2026-06-16T15:51:59.8416662Z     )
+2026-06-16T15:51:59.8416677Z     ^
+2026-06-16T15:51:59.8416714Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T15:51:59.8416730Z     raise ResponseValidationError(
+2026-06-16T15:51:59.8416748Z     ...<3 lines>...
+2026-06-16T15:51:59.8416763Z     )
+2026-06-16T15:51:59.8416780Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T15:51:59.8417148Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.task.Task object at 0x7e2ff473b150>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T15:51:59.8417166Z 
+2026-06-16T15:51:59.8417183Z   File "/app/app/routers/tasks.py", line 46, in update_task
+2026-06-16T15:51:59.8417199Z     PUT /api/v1/tasks/{task_id}
+2026-06-16T15:52:27.1854896Z [2026-06-16 15:52:27 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T15:52:27.1855424Z Traceback (most recent call last):
+2026-06-16T15:52:27.1855455Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T15:52:27.1855473Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T15:52:27.1855491Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:27.1855511Z         self.scope, self.receive, self.send
+2026-06-16T15:52:27.1855529Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:27.1855545Z     )
+2026-06-16T15:52:27.1855560Z     ^
+2026-06-16T15:52:27.1855580Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T15:52:27.1855597Z     return await self.app(scope, receive, send)
+2026-06-16T15:52:27.1855698Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:27.1855719Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T15:52:27.1855735Z     await super().__call__(scope, receive, send)
+2026-06-16T15:52:27.1855755Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T15:52:27.1855773Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:52:27.1855791Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T15:52:27.1855808Z     raise exc
+2026-06-16T15:52:27.1855826Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T15:52:27.1855843Z     await self.app(scope, receive, _send)
+2026-06-16T15:52:27.1855862Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T15:52:27.1855908Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T15:52:27.1855929Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T15:52:27.1855946Z     await self.app(scope, receive, send)
+2026-06-16T15:52:27.1855965Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T15:52:27.1855983Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T15:52:27.1856002Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:52:27.1856018Z     raise exc
+2026-06-16T15:52:27.1856037Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:52:27.1856054Z     await app(scope, receive, sender)
+2026-06-16T15:52:27.1856074Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T15:52:27.1856110Z     await self.app(scope, receive, send)
+2026-06-16T15:52:27.1856130Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T15:52:27.1856148Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:52:27.1856166Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T15:52:27.1856183Z     await route.handle(scope, receive, send)
+2026-06-16T15:52:27.1856202Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T15:52:27.1856220Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T15:52:27.1856239Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T15:52:27.1856257Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T15:52:27.1856276Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T15:52:27.1856293Z     await original_route.handle(scope, receive, send)
+2026-06-16T15:52:27.1856331Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T15:52:27.1856348Z     await app(scope, receive, send)
+2026-06-16T15:52:27.1856367Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T15:52:27.1856384Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T15:52:27.1856404Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:52:27.1856420Z     raise exc
+2026-06-16T15:52:27.1856439Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:52:27.1856456Z     await app(scope, receive, sender)
+2026-06-16T15:52:27.1856474Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T15:52:27.1856490Z     response = await f(request)
+2026-06-16T15:52:27.1856525Z                ^^^^^^^^^^^^^^^^
+2026-06-16T15:52:27.1856545Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T15:52:27.1856562Z     content = await serialize_response(
+2026-06-16T15:52:27.1856579Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:27.1856595Z     ...<11 lines>...
+2026-06-16T15:52:27.1856611Z     )
+2026-06-16T15:52:27.1856626Z     ^
+2026-06-16T15:52:27.1856645Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T15:52:27.1856662Z     raise ResponseValidationError(
+2026-06-16T15:52:27.1856678Z     ...<3 lines>...
+2026-06-16T15:52:27.1856694Z     )
+2026-06-16T15:52:27.1856732Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T15:52:27.1857069Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.project.Project object at 0x7e2ff476fce0>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T15:52:27.1857088Z 
+2026-06-16T15:52:27.1857106Z   File "/app/app/routers/projects.py", line 90, in update_project
+2026-06-16T15:52:27.1857123Z     PUT /api/v1/projects/{project_id}
+2026-06-16T15:52:51.2776400Z [2026-06-16 15:52:51 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T15:52:51.2776932Z Traceback (most recent call last):
+2026-06-16T15:52:51.2776963Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T15:52:51.2777061Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T15:52:51.2777082Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:51.2777100Z         self.scope, self.receive, self.send
+2026-06-16T15:52:51.2777116Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:51.2777133Z     )
+2026-06-16T15:52:51.2777148Z     ^
+2026-06-16T15:52:51.2777167Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T15:52:51.2777186Z     return await self.app(scope, receive, send)
+2026-06-16T15:52:51.2777202Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:51.2777221Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T15:52:51.2777239Z     await super().__call__(scope, receive, send)
+2026-06-16T15:52:51.2777276Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T15:52:51.2777294Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:52:51.2777314Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T15:52:51.2777330Z     raise exc
+2026-06-16T15:52:51.2777350Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T15:52:51.2777366Z     await self.app(scope, receive, _send)
+2026-06-16T15:52:51.2777386Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T15:52:51.2777405Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T15:52:51.2777424Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T15:52:51.2777442Z     await self.app(scope, receive, send)
+2026-06-16T15:52:51.2777478Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T15:52:51.2777496Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T15:52:51.2777515Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:52:51.2777531Z     raise exc
+2026-06-16T15:52:51.2777549Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:52:51.2777565Z     await app(scope, receive, sender)
+2026-06-16T15:52:51.2777584Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T15:52:51.2777601Z     await self.app(scope, receive, send)
+2026-06-16T15:52:51.2777620Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T15:52:51.2777636Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T15:52:51.2777654Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T15:52:51.2777689Z     await route.handle(scope, receive, send)
+2026-06-16T15:52:51.2777707Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T15:52:51.2777724Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T15:52:51.2777743Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T15:52:51.2777760Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T15:52:51.2777779Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T15:52:51.2777796Z     await original_route.handle(scope, receive, send)
+2026-06-16T15:52:51.2777814Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T15:52:51.2777830Z     await app(scope, receive, send)
+2026-06-16T15:52:51.2777848Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T15:52:51.2777882Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T15:52:51.2777902Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T15:52:51.2777917Z     raise exc
+2026-06-16T15:52:51.2777936Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T15:52:51.2777952Z     await app(scope, receive, sender)
+2026-06-16T15:52:51.2777970Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T15:52:51.2777987Z     response = await f(request)
+2026-06-16T15:52:51.2778002Z                ^^^^^^^^^^^^^^^^
+2026-06-16T15:52:51.2778020Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T15:52:51.2778036Z     content = await serialize_response(
+2026-06-16T15:52:51.2778053Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T15:52:51.2778084Z     ...<11 lines>...
+2026-06-16T15:52:51.2778099Z     )
+2026-06-16T15:52:51.2778115Z     ^
+2026-06-16T15:52:51.2778133Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T15:52:51.2778149Z     raise ResponseValidationError(
+2026-06-16T15:52:51.2778165Z     ...<3 lines>...
+2026-06-16T15:52:51.2778180Z     )
+2026-06-16T15:52:51.2778198Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T15:52:51.2778547Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.project.Project object at 0x7e2ff476f790>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T15:52:51.2778582Z 
+2026-06-16T15:52:51.2778601Z   File "/app/app/routers/projects.py", line 90, in update_project
+2026-06-16T15:52:51.2778617Z     PUT /api/v1/projects/{project_id}
+2026-06-16T16:06:16.1395413Z [2026-06-16 16:06:15 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:06:16.1692475Z Traceback (most recent call last):
+2026-06-16T16:06:16.1882293Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:06:16.1882397Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:06:16.1882423Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:06:16.1882441Z         self.scope, self.receive, self.send
+2026-06-16T16:06:16.1882466Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:06:16.1882482Z     )
+2026-06-16T16:06:16.1882498Z     ^
+2026-06-16T16:06:16.1882517Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:06:16.1882535Z     return await self.app(scope, receive, send)
+2026-06-16T16:06:16.1882632Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:06:16.1882652Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:06:16.1882670Z     await super().__call__(scope, receive, send)
+2026-06-16T16:06:16.1882688Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:06:16.1882705Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:06:16.1882726Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:06:16.1882742Z     raise exc
+2026-06-16T16:06:16.1882761Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:06:16.1882778Z     await self.app(scope, receive, _send)
+2026-06-16T16:06:16.1882797Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+2026-06-16T16:06:16.1882814Z     await self.app(scope, receive, send)
+2026-06-16T16:06:16.1882858Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:06:16.1882876Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:06:16.1882895Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:06:16.1882911Z     raise exc
+2026-06-16T16:06:16.1882929Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:06:16.1882947Z     await app(scope, receive, sender)
+2026-06-16T16:06:16.1882965Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:06:16.1882982Z     await self.app(scope, receive, send)
+2026-06-16T16:06:16.1883000Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:06:16.1883017Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:06:16.1883063Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:06:16.1883080Z     await route.handle(scope, receive, send)
+2026-06-16T16:06:16.1883098Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:06:16.1883116Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:06:16.1883134Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:06:16.1883153Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:06:16.1883172Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:06:16.1883189Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:06:16.1883207Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:06:16.1883223Z     await app(scope, receive, send)
+2026-06-16T16:06:16.1883262Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:06:16.1883280Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:06:16.1883299Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:06:16.1883315Z     raise exc
+2026-06-16T16:06:16.1883334Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:06:16.1883351Z     await app(scope, receive, sender)
+2026-06-16T16:06:16.1883369Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:06:16.1883386Z     response = await f(request)
+2026-06-16T16:06:16.1883401Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:06:16.1883419Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:06:16.1883435Z     content = await serialize_response(
+2026-06-16T16:06:16.1883475Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:06:16.1883491Z     ...<11 lines>...
+2026-06-16T16:06:16.1883506Z     )
+2026-06-16T16:06:16.1883521Z     ^
+2026-06-16T16:06:16.1883540Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:06:16.1883558Z     raise ResponseValidationError(
+2026-06-16T16:06:16.1883574Z     ...<3 lines>...
+2026-06-16T16:06:16.1883589Z     )
+2026-06-16T16:06:16.1883607Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:06:16.1884166Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.project.Project object at 0x7e2ff45ad250>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:06:16.1884186Z 
+2026-06-16T16:06:16.1884204Z   File "/app/app/routers/projects.py", line 90, in update_project
+2026-06-16T16:06:16.1884220Z     PUT /api/v1/projects/{project_id}
+2026-06-16T16:25:38.4106350Z [2026-06-16 16:25:38 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T16:25:38.4313045Z [2026-06-16 16:25:38 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T16:25:38.4320521Z [2026-06-16 16:25:38 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T16:25:38.5021954Z [2026-06-16 16:25:38 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T16:25:38.5738212Z [2026-06-16 16:25:38 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T16:25:38.7018315Z [2026-06-16 16:25:38 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T16:25:38.8826465Z [2026-06-16 16:25:38 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T16:25:39.1350917Z [2026-06-16 16:25:39 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T16:26:27.1600655Z [2026-06-16 16:26:27 +0000] [8] [INFO] Started server process [8]
+2026-06-16T16:26:27.1799807Z [2026-06-16 16:26:27 +0000] [10] [INFO] Started server process [10]
+2026-06-16T16:26:27.1873169Z [2026-06-16 16:26:27 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T16:26:27.1886814Z [2026-06-16 16:26:27 +0000] [7] [INFO] Started server process [7]
+2026-06-16T16:26:27.1894001Z [2026-06-16 16:26:27 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T16:26:27.1972261Z [2026-06-16 16:26:27 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T16:26:27.1987036Z [2026-06-16 16:26:27 +0000] [8] [INFO] Application startup complete.
+2026-06-16T16:26:27.2082392Z [2026-06-16 16:26:27 +0000] [7] [INFO] Application startup complete.
+2026-06-16T16:26:27.2469050Z [2026-06-16 16:26:27 +0000] [9] [INFO] Started server process [9]
+2026-06-16T16:26:27.2472732Z [2026-06-16 16:26:27 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T16:26:27.2478412Z [2026-06-16 16:26:27 +0000] [9] [INFO] Application startup complete.
+2026-06-16T16:26:27.2546273Z [2026-06-16 16:26:27 +0000] [10] [INFO] Application startup complete.
+2026-06-16T16:26:50.8966205Z [Previous Container] [2026-06-16 16:26:50 +0000] [1] [INFO] Handling signal: term
+2026-06-16T16:26:51.3686454Z [Previous Container] [2026-06-16 16:26:51 +0000] [10] [INFO] Shutting down
+2026-06-16T16:26:51.3973990Z [Previous Container] [2026-06-16 16:26:51 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:26:51.4186176Z [Previous Container] [2026-06-16 16:26:51 +0000] [9] [INFO] Shutting down
+2026-06-16T16:26:51.4574901Z [Previous Container] [2026-06-16 16:26:51 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:26:51.4583585Z [Previous Container] [2026-06-16 16:26:51 +0000] [8] [INFO] Shutting down
+2026-06-16T16:26:51.4671929Z [Previous Container] [2026-06-16 16:26:51 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:26:51.5686900Z [Previous Container] [2026-06-16 16:26:51 +0000] [7] [INFO] Shutting down
+2026-06-16T16:26:51.5881397Z [Previous Container] [2026-06-16 16:26:51 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T16:26:51.5972493Z [Previous Container] [2026-06-16 16:26:51 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T16:26:51.5984126Z [Previous Container] [2026-06-16 16:26:51 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T16:26:51.6399028Z [Previous Container] [2026-06-16 16:26:51 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T16:26:51.6484242Z [Previous Container] [2026-06-16 16:26:51 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:26:51.6489729Z [Previous Container] [2026-06-16 16:26:51 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T16:26:51.9400594Z [Previous Container] [2026-06-16 16:26:51 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T16:26:51.9586906Z [Previous Container] [2026-06-16 16:26:51 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T16:26:51.9599973Z [Previous Container] [2026-06-16 16:26:51 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T16:26:51.9675082Z [Previous Container] [2026-06-16 16:26:51 +0000] [7] [INFO] Waiting for application shutdown.
+2026-06-16T16:26:52.0273547Z [Previous Container] [2026-06-16 16:26:52 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T16:26:52.2206943Z [Previous Container] [2026-06-16 16:26:52 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T16:26:52.3210936Z [Previous Container] [2026-06-16 16:26:52 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T16:26:52.3217321Z [Previous Container] [2026-06-16 16:26:52 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T16:26:52.3619490Z [Previous Container] [2026-06-16 16:26:52 +0000] [7] [INFO] Application shutdown complete.
+2026-06-16T16:26:52.3702669Z [Previous Container] [2026-06-16 16:26:52 +0000] [7] [INFO] Finished server process [7]
+2026-06-16T16:26:52.5507632Z [Previous Container] [2026-06-16 16:26:52 +0000] [1] [INFO] Worker (pid:7) was sent SIGTERM!
+2026-06-16T16:26:52.6914747Z [Previous Container] [2026-06-16 16:26:52 +0000] [1] [INFO] Shutting down: Master
+2026-06-16T16:27:18.6436668Z [2026-06-16 16:27:18 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T16:27:18.6817390Z [2026-06-16 16:27:18 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T16:27:18.6817610Z [2026-06-16 16:27:18 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T16:27:18.7137909Z [2026-06-16 16:27:18 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T16:27:18.8041608Z [2026-06-16 16:27:18 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T16:27:18.9237470Z [2026-06-16 16:27:18 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T16:27:19.2740454Z [2026-06-16 16:27:19 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T16:27:19.9453893Z [2026-06-16 16:27:19 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T16:28:12.6023983Z [2026-06-16 16:28:12 +0000] [9] [INFO] Started server process [9]
+2026-06-16T16:28:12.6038317Z [2026-06-16 16:28:12 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T16:28:12.6522930Z [2026-06-16 16:28:12 +0000] [8] [INFO] Started server process [8]
+2026-06-16T16:28:12.6538203Z [2026-06-16 16:28:12 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T16:28:12.7326138Z [2026-06-16 16:28:12 +0000] [9] [INFO] Application startup complete.
+2026-06-16T16:28:12.7431649Z [2026-06-16 16:28:12 +0000] [8] [INFO] Application startup complete.
+2026-06-16T16:28:12.8439938Z [2026-06-16 16:28:12 +0000] [10] [INFO] Started server process [10]
+2026-06-16T16:28:12.8642650Z [2026-06-16 16:28:12 +0000] [7] [INFO] Started server process [7]
+2026-06-16T16:28:12.8645840Z [2026-06-16 16:28:12 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T16:28:12.8654274Z [2026-06-16 16:28:12 +0000] [7] [INFO] Application startup complete.
+2026-06-16T16:28:12.8948779Z [2026-06-16 16:28:12 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T16:28:12.9048612Z [2026-06-16 16:28:12 +0000] [10] [INFO] Application startup complete.
+2026-06-16T16:28:38.1539303Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Handling signal: term
+2026-06-16T16:28:38.1932191Z [Previous Container] [2026-06-16 16:28:38 +0000] [10] [INFO] Shutting down
+2026-06-16T16:28:38.1949254Z [Previous Container] [2026-06-16 16:28:38 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:28:38.2354454Z [Previous Container] [2026-06-16 16:28:38 +0000] [8] [INFO] Shutting down
+2026-06-16T16:28:38.2370837Z [Previous Container] [2026-06-16 16:28:38 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:28:38.2447562Z [Previous Container] [2026-06-16 16:28:38 +0000] [7] [INFO] Shutting down
+2026-06-16T16:28:38.2461685Z [Previous Container] [2026-06-16 16:28:38 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:28:38.2729831Z [Previous Container] [2026-06-16 16:28:38 +0000] [9] [INFO] Shutting down
+2026-06-16T16:28:38.2747184Z [Previous Container] [2026-06-16 16:28:38 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:28:38.2982890Z [Previous Container] [2026-06-16 16:28:38 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T16:28:38.2990370Z [Previous Container] [2026-06-16 16:28:38 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T16:28:38.2991915Z [Previous Container] [2026-06-16 16:28:38 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T16:28:38.3412089Z [Previous Container] [2026-06-16 16:28:38 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T16:28:38.3429803Z [Previous Container] [2026-06-16 16:28:38 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T16:28:38.3580507Z [Previous Container] [2026-06-16 16:28:38 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T16:28:38.3580819Z [Previous Container] [2026-06-16 16:28:38 +0000] [7] [INFO] Waiting for application shutdown.
+2026-06-16T16:28:38.3580845Z [Previous Container] [2026-06-16 16:28:38 +0000] [7] [INFO] Application shutdown complete.
+2026-06-16T16:28:38.3580889Z [Previous Container] [2026-06-16 16:28:38 +0000] [7] [INFO] Finished server process [7]
+2026-06-16T16:28:38.3996038Z [Previous Container] [2026-06-16 16:28:38 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T16:28:38.4002820Z [Previous Container] [2026-06-16 16:28:38 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T16:28:38.4004548Z [Previous Container] [2026-06-16 16:28:38 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T16:28:38.4592862Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T16:28:38.4786378Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Worker (pid:7) was sent SIGTERM!
+2026-06-16T16:28:38.4798094Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T16:28:38.4806908Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T16:28:38.5830506Z [Previous Container] [2026-06-16 16:28:38 +0000] [1] [INFO] Shutting down: Master
+2026-06-16T16:28:58.1174402Z [2026-06-16 16:28:58 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:28:58.1174877Z Traceback (most recent call last):
+2026-06-16T16:28:58.1174905Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:28:58.1174925Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:28:58.1174943Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:28:58.1174982Z         self.scope, self.receive, self.send
+2026-06-16T16:28:58.1174999Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:28:58.1175016Z     )
+2026-06-16T16:28:58.1175031Z     ^
+2026-06-16T16:28:58.1175056Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:28:58.1175098Z     return await self.app(scope, receive, send)
+2026-06-16T16:28:58.1175116Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:28:58.1175135Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:28:58.1175152Z     await super().__call__(scope, receive, send)
+2026-06-16T16:28:58.1175171Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:28:58.1175188Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:28:58.1175208Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:28:58.1175228Z     raise exc
+2026-06-16T16:28:58.1175247Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:28:58.1175280Z     await self.app(scope, receive, _send)
+2026-06-16T16:28:58.1175299Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T16:28:58.1175317Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T16:28:58.1175336Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T16:28:58.1175353Z     await self.app(scope, receive, send)
+2026-06-16T16:28:58.1175372Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:28:58.1175391Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:28:58.1175409Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:28:58.1175425Z     raise exc
+2026-06-16T16:28:58.1175444Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:28:58.1175479Z     await app(scope, receive, sender)
+2026-06-16T16:28:58.1175498Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:28:58.1175515Z     await self.app(scope, receive, send)
+2026-06-16T16:28:58.1175534Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:28:58.1175554Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:28:58.1175572Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:28:58.1175590Z     await route.handle(scope, receive, send)
+2026-06-16T16:28:58.1175609Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:28:58.1175641Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:28:58.1175660Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:28:58.1175678Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:28:58.1175696Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:28:58.1175713Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:28:58.1175731Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:28:58.1175748Z     await app(scope, receive, send)
+2026-06-16T16:28:58.1175766Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:28:58.1175784Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:28:58.1175803Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:28:58.1175834Z     raise exc
+2026-06-16T16:28:58.1175854Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:28:58.1175870Z     await app(scope, receive, sender)
+2026-06-16T16:28:58.1175888Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:28:58.1175906Z     response = await f(request)
+2026-06-16T16:28:58.1175922Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:28:58.1175940Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:28:58.1175957Z     content = await serialize_response(
+2026-06-16T16:28:58.1175973Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:28:58.1175989Z     ...<11 lines>...
+2026-06-16T16:28:58.1176004Z     )
+2026-06-16T16:28:58.1176019Z     ^
+2026-06-16T16:28:58.1176054Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:28:58.1176071Z     raise ResponseValidationError(
+2026-06-16T16:28:58.1176087Z     ...<3 lines>...
+2026-06-16T16:28:58.1176102Z     )
+2026-06-16T16:28:58.1176119Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:28:58.1181148Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.project.Project object at 0x700bf7001bd0>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:28:58.1181299Z 
+2026-06-16T16:28:58.1181321Z   File "/app/app/routers/projects.py", line 90, in update_project
+2026-06-16T16:28:58.1181337Z     PUT /api/v1/projects/{project_id}
+2026-06-16T16:29:43.8335069Z [2026-06-16 16:29:43 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:29:43.8335514Z Traceback (most recent call last):
+2026-06-16T16:29:43.8335540Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:29:43.8335561Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:29:43.8335578Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:29:43.8335595Z         self.scope, self.receive, self.send
+2026-06-16T16:29:43.8335611Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:29:43.8335627Z     )
+2026-06-16T16:29:43.8335642Z     ^
+2026-06-16T16:29:43.8335661Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:29:43.8335679Z     return await self.app(scope, receive, send)
+2026-06-16T16:29:43.8335719Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:29:43.8335738Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:29:43.8335755Z     await super().__call__(scope, receive, send)
+2026-06-16T16:29:43.8335774Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:29:43.8335792Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:29:43.8335811Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:29:43.8335827Z     raise exc
+2026-06-16T16:29:43.8335846Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:29:43.8335864Z     await self.app(scope, receive, _send)
+2026-06-16T16:29:43.8335883Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T16:29:43.8335922Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T16:29:43.8335942Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T16:29:43.8335959Z     await self.app(scope, receive, send)
+2026-06-16T16:29:43.8335978Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:29:43.8335997Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:29:43.8336015Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:29:43.8336031Z     raise exc
+2026-06-16T16:29:43.8336050Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:29:43.8336066Z     await app(scope, receive, sender)
+2026-06-16T16:29:43.8336085Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:29:43.8336101Z     await self.app(scope, receive, send)
+2026-06-16T16:29:43.8336143Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:29:43.8336161Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:29:43.8336179Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:29:43.8336196Z     await route.handle(scope, receive, send)
+2026-06-16T16:29:43.8336215Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:29:43.8336232Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:29:43.8336250Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:29:43.8336267Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:29:43.8336286Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:29:43.8336303Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:29:43.8336337Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:29:43.8336353Z     await app(scope, receive, send)
+2026-06-16T16:29:43.8336371Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:29:43.8336389Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:29:43.8336408Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:29:43.8336423Z     raise exc
+2026-06-16T16:29:43.8336442Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:29:43.8336458Z     await app(scope, receive, sender)
+2026-06-16T16:29:43.8336476Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:29:43.8336493Z     response = await f(request)
+2026-06-16T16:29:43.8336508Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:29:43.8336548Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:29:43.8336565Z     content = await serialize_response(
+2026-06-16T16:29:43.8336581Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:29:43.8336597Z     ...<11 lines>...
+2026-06-16T16:29:43.8336612Z     )
+2026-06-16T16:29:43.8336627Z     ^
+2026-06-16T16:29:43.8336646Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:29:43.8336663Z     raise ResponseValidationError(
+2026-06-16T16:29:43.8336679Z     ...<3 lines>...
+2026-06-16T16:29:43.8336698Z     )
+2026-06-16T16:29:43.8336716Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:29:43.8337033Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.task.Task object at 0x700bf4e4df20>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:29:43.8337053Z 
+2026-06-16T16:29:43.8337071Z   File "/app/app/routers/tasks.py", line 46, in update_task
+2026-06-16T16:29:43.8337087Z     PUT /api/v1/tasks/{task_id}
+2026-06-16T16:30:54.7279839Z [2026-06-16 16:30:54 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:30:54.7280372Z Traceback (most recent call last):
+2026-06-16T16:30:54.7280408Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:30:54.7280427Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:30:54.7280634Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:30:54.7280656Z         self.scope, self.receive, self.send
+2026-06-16T16:30:54.7280672Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:30:54.7280689Z     )
+2026-06-16T16:30:54.7280706Z     ^
+2026-06-16T16:30:54.7280725Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:30:54.7280743Z     return await self.app(scope, receive, send)
+2026-06-16T16:30:54.7280760Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:30:54.7280779Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:30:54.7280796Z     await super().__call__(scope, receive, send)
+2026-06-16T16:30:54.7280814Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:30:54.7280887Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:30:54.7280907Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:30:54.7280924Z     raise exc
+2026-06-16T16:30:54.7280943Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:30:54.7280959Z     await self.app(scope, receive, _send)
+2026-06-16T16:30:54.7280978Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T16:30:54.7280997Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T16:30:54.7281016Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T16:30:54.7281033Z     await self.app(scope, receive, send)
+2026-06-16T16:30:54.7281052Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:30:54.7281121Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:30:54.7281141Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:30:54.7281157Z     raise exc
+2026-06-16T16:30:54.7281177Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:30:54.7281194Z     await app(scope, receive, sender)
+2026-06-16T16:30:54.7281212Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:30:54.7281229Z     await self.app(scope, receive, send)
+2026-06-16T16:30:54.7281248Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:30:54.7281265Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:30:54.7281283Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:30:54.7281301Z     await route.handle(scope, receive, send)
+2026-06-16T16:30:54.7281375Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:30:54.7281393Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:30:54.7281411Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:30:54.7281429Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:30:54.7281448Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:30:54.7281465Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:30:54.7281484Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:30:54.7281501Z     await app(scope, receive, send)
+2026-06-16T16:30:54.7281523Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:30:54.7281541Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:30:54.7281618Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:30:54.7281635Z     raise exc
+2026-06-16T16:30:54.7281655Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:30:54.7281671Z     await app(scope, receive, sender)
+2026-06-16T16:30:54.7281689Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:30:54.7281706Z     response = await f(request)
+2026-06-16T16:30:54.7281722Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:30:54.7281740Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:30:54.7281756Z     content = await serialize_response(
+2026-06-16T16:30:54.7281772Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:30:54.7281788Z     ...<11 lines>...
+2026-06-16T16:30:54.7281858Z     )
+2026-06-16T16:30:54.7281874Z     ^
+2026-06-16T16:30:54.7281893Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:30:54.7281910Z     raise ResponseValidationError(
+2026-06-16T16:30:54.7281926Z     ...<3 lines>...
+2026-06-16T16:30:54.7281941Z     )
+2026-06-16T16:30:54.7281959Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:30:54.7282265Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT bugs.updated_at AS bugs_updated_at \nFROM bugs \nWHERE bugs.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.bug.Bug object at 0x700bf4efa350>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT bugs.updated_at AS bugs_updated_at \nFROM bugs \nWHERE bugs.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:30:54.7282283Z 
+2026-06-16T16:30:54.7282354Z   File "/app/app/routers/bugs.py", line 46, in update_bug
+2026-06-16T16:30:54.7282371Z     PUT /api/v1/bugs/{bug_id}
+2026-06-16T16:33:08.3382023Z [2026-06-16 16:33:08 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:33:08.3396190Z Traceback (most recent call last):
+2026-06-16T16:33:08.3396289Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+2026-06-16T16:33:08.3396310Z     self.dialect.do_execute(
+2026-06-16T16:33:08.3396330Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3396350Z         cursor, str_statement, effective_parameters, context
+2026-06-16T16:33:08.3396368Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3396386Z     )
+2026-06-16T16:33:08.3396403Z     ^
+2026-06-16T16:33:08.3396424Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-06-16T16:33:08.3396444Z     cursor.execute(statement, parameters)
+2026-06-16T16:33:08.3396526Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3396550Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+2026-06-16T16:33:08.3396568Z     self._adapt_connection._handle_exception(error)
+2026-06-16T16:33:08.3396586Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+2026-06-16T16:33:08.3396607Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+2026-06-16T16:33:08.3396624Z     raise error.with_traceback(exc_info[2])
+2026-06-16T16:33:08.3396644Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+2026-06-16T16:33:08.3396667Z     return self.await_(self._execute_async(operation, parameters))
+2026-06-16T16:33:08.3396686Z            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3396707Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+2026-06-16T16:33:08.3396755Z     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+2026-06-16T16:33:08.3396774Z            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+2026-06-16T16:33:08.3396795Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+2026-06-16T16:33:08.3396812Z     value = await result
+2026-06-16T16:33:08.3396829Z             ^^^^^^^^^^^^
+2026-06-16T16:33:08.3396920Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+2026-06-16T16:33:08.3396942Z     result = await self._cursor.execute(operation, parameters)
+2026-06-16T16:33:08.3396960Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3396980Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 239, in execute
+2026-06-16T16:33:08.3396997Z     await self._query(query)
+2026-06-16T16:33:08.3397018Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 457, in _query
+2026-06-16T16:33:08.3397061Z     await conn.query(q)
+2026-06-16T16:33:08.3397083Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 469, in query
+2026-06-16T16:33:08.3397103Z     await self._read_query_result(unbuffered=unbuffered)
+2026-06-16T16:33:08.3397123Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+2026-06-16T16:33:08.3397141Z     await result.read()
+2026-06-16T16:33:08.3397160Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 1164, in read
+2026-06-16T16:33:08.3397178Z     first_packet = await self.connection._read_packet()
+2026-06-16T16:33:08.3397196Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3397215Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 652, in _read_packet
+2026-06-16T16:33:08.3397232Z     packet.raise_for_error()
+2026-06-16T16:33:08.3397251Z     ~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:33:08.3397293Z   File "/usr/local/lib/python3.14/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+2026-06-16T16:33:08.3397312Z     err.raise_mysql_exception(self._data)
+2026-06-16T16:33:08.3397329Z     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+2026-06-16T16:33:08.3397349Z   File "/usr/local/lib/python3.14/site-packages/pymysql/err.py", line 154, in raise_mysql_exception
+2026-06-16T16:33:08.3397367Z     raise errorclass(errno, errval, sqlstate=sqlstate)
+2026-06-16T16:33:08.3397384Z pymysql.err.IntegrityError: (1048, "Column 'name' cannot be null")
+2026-06-16T16:33:08.3397400Z 
+2026-06-16T16:33:08.3397420Z The above exception was the direct cause of the following exception:
+2026-06-16T16:33:08.3397435Z 
+2026-06-16T16:33:08.3397453Z Traceback (most recent call last):
+2026-06-16T16:33:08.3397497Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:33:08.3397519Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:33:08.3397537Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3397555Z         self.scope, self.receive, self.send
+2026-06-16T16:33:08.3397573Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3397590Z     )
+2026-06-16T16:33:08.3397606Z     ^
+2026-06-16T16:33:08.3445308Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:33:08.3445369Z     return await self.app(scope, receive, send)
+2026-06-16T16:33:08.3445388Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3445409Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:33:08.3445466Z     await super().__call__(scope, receive, send)
+2026-06-16T16:33:08.3445489Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:33:08.3445511Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:33:08.3445895Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:33:08.3445925Z     raise exc
+2026-06-16T16:33:08.3445946Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:33:08.3445965Z     await self.app(scope, receive, _send)
+2026-06-16T16:33:08.3445985Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+2026-06-16T16:33:08.3446004Z     await self.app(scope, receive, send)
+2026-06-16T16:33:08.3446025Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:33:08.3446070Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:33:08.3446092Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:33:08.3446115Z     raise exc
+2026-06-16T16:33:08.3446135Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:33:08.3446154Z     await app(scope, receive, sender)
+2026-06-16T16:33:08.3446175Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:33:08.3446192Z     await self.app(scope, receive, send)
+2026-06-16T16:33:08.3446213Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:33:08.3446232Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:33:08.3446252Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:33:08.3446271Z     await route.handle(scope, receive, send)
+2026-06-16T16:33:08.3446309Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:33:08.3446330Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:33:08.3446350Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:33:08.3446369Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:33:08.3446391Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:33:08.3446411Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:33:08.3446431Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:33:08.3446449Z     await app(scope, receive, send)
+2026-06-16T16:33:08.3446469Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:33:08.3446488Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:33:08.3446526Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:33:08.3446545Z     raise exc
+2026-06-16T16:33:08.3446565Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:33:08.3446584Z     await app(scope, receive, sender)
+2026-06-16T16:33:08.3446604Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:33:08.3446622Z     response = await f(request)
+2026-06-16T16:33:08.3446640Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3446659Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 683, in app
+2026-06-16T16:33:08.3446683Z     raw_response = await run_endpoint_function(
+2026-06-16T16:33:08.3446701Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3446719Z     ...<3 lines>...
+2026-06-16T16:33:08.3446752Z     )
+2026-06-16T16:33:08.3446770Z     ^
+2026-06-16T16:33:08.3446791Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 337, in run_endpoint_function
+2026-06-16T16:33:08.3446809Z     return await dependant.call(**values)
+2026-06-16T16:33:08.3446827Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3446846Z   File "/app/app/routers/projects.py", line 118, in update_project
+2026-06-16T16:33:08.3446865Z     project = await project_service.update_project(
+2026-06-16T16:33:08.3446884Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3446901Z     ...<4 lines>...
+2026-06-16T16:33:08.3446918Z     )
+2026-06-16T16:33:08.3446934Z     ^
+2026-06-16T16:33:08.3446971Z   File "/app/app/services/project_service.py", line 112, in update_project
+2026-06-16T16:33:08.3446991Z     await session.flush()
+2026-06-16T16:33:08.3447011Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/ext/asyncio/session.py", line 786, in flush
+2026-06-16T16:33:08.3447030Z     await greenlet_spawn(self.sync_session.flush, objects=objects)
+2026-06-16T16:33:08.3447052Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+2026-06-16T16:33:08.3447070Z     result = context.switch(value)
+2026-06-16T16:33:08.3447091Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+2026-06-16T16:33:08.3447109Z     self._flush(objects)
+2026-06-16T16:33:08.3447126Z     ~~~~~~~~~~~^^^^^^^^^
+2026-06-16T16:33:08.3447146Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+2026-06-16T16:33:08.3447164Z     with util.safe_reraise():
+2026-06-16T16:33:08.3447205Z          ~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:33:08.3447355Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+2026-06-16T16:33:08.3447397Z     raise exc_value.with_traceback(exc_tb)
+2026-06-16T16:33:08.3447426Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+2026-06-16T16:33:08.3447445Z     flush_context.execute()
+2026-06-16T16:33:08.3447463Z     ~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:33:08.3447543Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+2026-06-16T16:33:08.3447569Z     rec.execute(self)
+2026-06-16T16:33:08.3447587Z     ~~~~~~~~~~~^^^^^^
+2026-06-16T16:33:08.3447607Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+2026-06-16T16:33:08.3447645Z     util.preloaded.orm_persistence.save_obj(
+2026-06-16T16:33:08.3447665Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3447682Z         self.mapper,
+2026-06-16T16:33:08.3447699Z         ^^^^^^^^^^^^
+2026-06-16T16:33:08.3447718Z         uow.states_for_mapper_hierarchy(self.mapper, False, False),
+2026-06-16T16:33:08.3447737Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3447754Z         uow,
+2026-06-16T16:33:08.3447770Z         ^^^^
+2026-06-16T16:33:08.3447786Z     )
+2026-06-16T16:33:08.3447802Z     ^
+2026-06-16T16:33:08.3447822Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/persistence.py", line 86, in save_obj
+2026-06-16T16:33:08.3447839Z     _emit_update_statements(
+2026-06-16T16:33:08.3447878Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3447897Z         base_mapper,
+2026-06-16T16:33:08.3447914Z         ^^^^^^^^^^^^
+2026-06-16T16:33:08.3447932Z     ...<3 lines>...
+2026-06-16T16:33:08.3447949Z         update,
+2026-06-16T16:33:08.3447966Z         ^^^^^^^
+2026-06-16T16:33:08.3447982Z     )
+2026-06-16T16:33:08.3447999Z     ^
+2026-06-16T16:33:08.3448020Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/persistence.py", line 913, in _emit_update_statements
+2026-06-16T16:33:08.3448039Z     c = connection.execute(
+2026-06-16T16:33:08.3448057Z         statement, multiparams, execution_options=execution_options
+2026-06-16T16:33:08.3448096Z     )
+2026-06-16T16:33:08.3448117Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+2026-06-16T16:33:08.3448135Z     return meth(
+2026-06-16T16:33:08.3448152Z         self,
+2026-06-16T16:33:08.3448170Z         distilled_parameters,
+2026-06-16T16:33:08.3448188Z         execution_options or NO_OPTIONS,
+2026-06-16T16:33:08.3448205Z     )
+2026-06-16T16:33:08.3448226Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+2026-06-16T16:33:08.3448245Z     return connection._execute_clauseelement(
+2026-06-16T16:33:08.3448263Z            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3448282Z         self, distilled_params, execution_options
+2026-06-16T16:33:08.3448318Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3448337Z     )
+2026-06-16T16:33:08.3448354Z     ^
+2026-06-16T16:33:08.3448375Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+2026-06-16T16:33:08.3448394Z     ret = self._execute_context(
+2026-06-16T16:33:08.3448411Z         dialect,
+2026-06-16T16:33:08.3448428Z     ...<8 lines>...
+2026-06-16T16:33:08.3448446Z         cache_hit=cache_hit,
+2026-06-16T16:33:08.3448462Z     )
+2026-06-16T16:33:08.3448483Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+2026-06-16T16:33:08.3448502Z     return self._exec_single_context(
+2026-06-16T16:33:08.3448521Z            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3448563Z         dialect, context, statement, parameters
+2026-06-16T16:33:08.3448583Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3448599Z     )
+2026-06-16T16:33:08.3448616Z     ^
+2026-06-16T16:33:08.3448637Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+2026-06-16T16:33:08.3448655Z     self._handle_dbapi_exception(
+2026-06-16T16:33:08.3448673Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3448693Z         e, str_statement, effective_parameters, cursor, context
+2026-06-16T16:33:08.3448712Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3448729Z     )
+2026-06-16T16:33:08.3448745Z     ^
+2026-06-16T16:33:08.3448790Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+2026-06-16T16:33:08.3448811Z     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+2026-06-16T16:33:08.3448832Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+2026-06-16T16:33:08.3448850Z     self.dialect.do_execute(
+2026-06-16T16:33:08.3448868Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:33:08.3448888Z         cursor, str_statement, effective_parameters, context
+2026-06-16T16:33:08.3448906Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3448923Z     )
+2026-06-16T16:33:08.3448939Z     ^
+2026-06-16T16:33:08.3448960Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-06-16T16:33:08.3448978Z     cursor.execute(statement, parameters)
+2026-06-16T16:33:08.3449018Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3449040Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+2026-06-16T16:33:08.3449059Z     self._adapt_connection._handle_exception(error)
+2026-06-16T16:33:08.3449077Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+2026-06-16T16:33:08.3449098Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+2026-06-16T16:33:08.3449116Z     raise error.with_traceback(exc_info[2])
+2026-06-16T16:33:08.3449137Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+2026-06-16T16:33:08.3449156Z     return self.await_(self._execute_async(operation, parameters))
+2026-06-16T16:33:08.3449175Z            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3449196Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+2026-06-16T16:33:08.3449239Z     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+2026-06-16T16:33:08.3449259Z            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+2026-06-16T16:33:08.3449281Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+2026-06-16T16:33:08.3449299Z     value = await result
+2026-06-16T16:33:08.3449316Z             ^^^^^^^^^^^^
+2026-06-16T16:33:08.3449382Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+2026-06-16T16:33:08.3449408Z     result = await self._cursor.execute(operation, parameters)
+2026-06-16T16:33:08.3449429Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3449450Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 239, in execute
+2026-06-16T16:33:08.3449468Z     await self._query(query)
+2026-06-16T16:33:08.3449508Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 457, in _query
+2026-06-16T16:33:08.3449529Z     await conn.query(q)
+2026-06-16T16:33:08.3449549Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 469, in query
+2026-06-16T16:33:08.3449569Z     await self._read_query_result(unbuffered=unbuffered)
+2026-06-16T16:33:08.3449590Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+2026-06-16T16:33:08.3449608Z     await result.read()
+2026-06-16T16:33:08.3449628Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 1164, in read
+2026-06-16T16:33:08.3449648Z     first_packet = await self.connection._read_packet()
+2026-06-16T16:33:08.3449666Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:33:08.3449687Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 652, in _read_packet
+2026-06-16T16:33:08.3449705Z     packet.raise_for_error()
+2026-06-16T16:33:08.3449749Z     ~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:33:08.3449771Z   File "/usr/local/lib/python3.14/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+2026-06-16T16:33:08.3449790Z     err.raise_mysql_exception(self._data)
+2026-06-16T16:33:08.3449809Z     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+2026-06-16T16:33:08.3449830Z   File "/usr/local/lib/python3.14/site-packages/pymysql/err.py", line 154, in raise_mysql_exception
+2026-06-16T16:33:08.3449849Z     raise errorclass(errno, errval, sqlstate=sqlstate)
+2026-06-16T16:33:08.3449870Z sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1048, "Column 'name' cannot be null")
+2026-06-16T16:33:08.3449892Z [SQL: UPDATE projects SET name=%s, start_date=%s, end_date=%s, status=%s, updated_at=now(), updated_by=%s WHERE projects.id = %s]
+2026-06-16T16:33:08.3449912Z [parameters: (None, None, None, None, 'admin', 1)]
+2026-06-16T16:33:08.3449932Z (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-16T16:35:46.7770751Z [2026-06-16 16:35:46 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:35:46.7771431Z Traceback (most recent call last):
+2026-06-16T16:35:46.7771457Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+2026-06-16T16:35:46.7771475Z     self.dialect.do_execute(
+2026-06-16T16:35:46.7771492Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7771509Z         cursor, str_statement, effective_parameters, context
+2026-06-16T16:35:46.7771527Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7771543Z     )
+2026-06-16T16:35:46.7771558Z     ^
+2026-06-16T16:35:46.7771578Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-06-16T16:35:46.7771595Z     cursor.execute(statement, parameters)
+2026-06-16T16:35:46.7771635Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7771655Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+2026-06-16T16:35:46.7771672Z     self._adapt_connection._handle_exception(error)
+2026-06-16T16:35:46.7771688Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+2026-06-16T16:35:46.7771707Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+2026-06-16T16:35:46.7771725Z     raise error.with_traceback(exc_info[2])
+2026-06-16T16:35:46.7771744Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+2026-06-16T16:35:46.7771761Z     return self.await_(self._execute_async(operation, parameters))
+2026-06-16T16:35:46.7771778Z            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7771798Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+2026-06-16T16:35:46.7771831Z     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+2026-06-16T16:35:46.7771847Z            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+2026-06-16T16:35:46.7771868Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+2026-06-16T16:35:46.7771885Z     value = await result
+2026-06-16T16:35:46.7771902Z             ^^^^^^^^^^^^
+2026-06-16T16:35:46.7771920Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+2026-06-16T16:35:46.7771938Z     result = await self._cursor.execute(operation, parameters)
+2026-06-16T16:35:46.7771956Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7771974Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 239, in execute
+2026-06-16T16:35:46.7771990Z     await self._query(query)
+2026-06-16T16:35:46.7772010Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 457, in _query
+2026-06-16T16:35:46.7772051Z     await conn.query(q)
+2026-06-16T16:35:46.7772070Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 469, in query
+2026-06-16T16:35:46.7772088Z     await self._read_query_result(unbuffered=unbuffered)
+2026-06-16T16:35:46.7772106Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+2026-06-16T16:35:46.7772122Z     await result.read()
+2026-06-16T16:35:46.7772141Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 1164, in read
+2026-06-16T16:35:46.7772157Z     first_packet = await self.connection._read_packet()
+2026-06-16T16:35:46.7772175Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7772194Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 652, in _read_packet
+2026-06-16T16:35:46.7772210Z     packet.raise_for_error()
+2026-06-16T16:35:46.7772226Z     ~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:35:46.7772258Z   File "/usr/local/lib/python3.14/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+2026-06-16T16:35:46.7772275Z     err.raise_mysql_exception(self._data)
+2026-06-16T16:35:46.7772291Z     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+2026-06-16T16:35:46.7772309Z   File "/usr/local/lib/python3.14/site-packages/pymysql/err.py", line 154, in raise_mysql_exception
+2026-06-16T16:35:46.7772326Z     raise errorclass(errno, errval, sqlstate=sqlstate)
+2026-06-16T16:35:46.7772344Z pymysql.err.IntegrityError: (1048, "Column 'name' cannot be null")
+2026-06-16T16:35:46.7772360Z 
+2026-06-16T16:35:46.7772378Z The above exception was the direct cause of the following exception:
+2026-06-16T16:35:46.7772392Z 
+2026-06-16T16:35:46.7772408Z Traceback (most recent call last):
+2026-06-16T16:35:46.7772443Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:35:46.7772461Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:35:46.7772478Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7772495Z         self.scope, self.receive, self.send
+2026-06-16T16:35:46.7772512Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7772527Z     )
+2026-06-16T16:35:46.7772541Z     ^
+2026-06-16T16:35:46.7772560Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:35:46.7772577Z     return await self.app(scope, receive, send)
+2026-06-16T16:35:46.7772593Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7772611Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:35:46.7772642Z     await super().__call__(scope, receive, send)
+2026-06-16T16:35:46.7772660Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:35:46.7772677Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:35:46.7950524Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:35:46.7950790Z     raise exc
+2026-06-16T16:35:46.7950814Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:35:46.7950832Z     await self.app(scope, receive, _send)
+2026-06-16T16:35:46.7950859Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+2026-06-16T16:35:46.7950878Z     await self.app(scope, receive, send)
+2026-06-16T16:35:46.7950899Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:35:46.7950946Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:35:46.7950966Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:35:46.7950983Z     raise exc
+2026-06-16T16:35:46.7951001Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:35:46.7951018Z     await app(scope, receive, sender)
+2026-06-16T16:35:46.7951037Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:35:46.7951055Z     await self.app(scope, receive, send)
+2026-06-16T16:35:46.7951074Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:35:46.7951091Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:35:46.7951110Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:35:46.7951128Z     await route.handle(scope, receive, send)
+2026-06-16T16:35:46.7951163Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:35:46.7951181Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:35:46.7951199Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:35:46.7951217Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:35:46.7951237Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:35:46.7951255Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:35:46.7951273Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:35:46.7951290Z     await app(scope, receive, send)
+2026-06-16T16:35:46.7951308Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:35:46.7951326Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:35:46.7951362Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:35:46.7951378Z     raise exc
+2026-06-16T16:35:46.7951396Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:35:46.7951413Z     await app(scope, receive, sender)
+2026-06-16T16:35:46.7951431Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:35:46.7951449Z     response = await f(request)
+2026-06-16T16:35:46.7951465Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7951483Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 683, in app
+2026-06-16T16:35:46.7951545Z     raw_response = await run_endpoint_function(
+2026-06-16T16:35:46.7951564Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7951580Z     ...<3 lines>...
+2026-06-16T16:35:46.7951612Z     )
+2026-06-16T16:35:46.7951628Z     ^
+2026-06-16T16:35:46.7951650Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 337, in run_endpoint_function
+2026-06-16T16:35:46.7951666Z     return await dependant.call(**values)
+2026-06-16T16:35:46.7951682Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7951700Z   File "/app/app/routers/projects.py", line 118, in update_project
+2026-06-16T16:35:46.7951717Z     project = await project_service.update_project(
+2026-06-16T16:35:46.7951734Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7951750Z     ...<4 lines>...
+2026-06-16T16:35:46.7951766Z     )
+2026-06-16T16:35:46.7951781Z     ^
+2026-06-16T16:35:46.7951822Z   File "/app/app/services/project_service.py", line 112, in update_project
+2026-06-16T16:35:46.7951839Z     await session.flush()
+2026-06-16T16:35:46.7951858Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/ext/asyncio/session.py", line 786, in flush
+2026-06-16T16:35:46.7951875Z     await greenlet_spawn(self.sync_session.flush, objects=objects)
+2026-06-16T16:35:46.7951895Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+2026-06-16T16:35:46.7951911Z     result = context.switch(value)
+2026-06-16T16:35:46.7951931Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+2026-06-16T16:35:46.7951947Z     self._flush(objects)
+2026-06-16T16:35:46.7951962Z     ~~~~~~~~~~~^^^^^^^^^
+2026-06-16T16:35:46.7951981Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+2026-06-16T16:35:46.7951997Z     with util.safe_reraise():
+2026-06-16T16:35:46.7953127Z          ~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:35:46.7953156Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+2026-06-16T16:35:46.7953172Z     raise exc_value.with_traceback(exc_tb)
+2026-06-16T16:35:46.7953191Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+2026-06-16T16:35:46.7953208Z     flush_context.execute()
+2026-06-16T16:35:46.7953224Z     ~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:35:46.7953403Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+2026-06-16T16:35:46.7953423Z     rec.execute(self)
+2026-06-16T16:35:46.7953438Z     ~~~~~~~~~~~^^^^^^
+2026-06-16T16:35:46.7953457Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+2026-06-16T16:35:46.7953502Z     util.preloaded.orm_persistence.save_obj(
+2026-06-16T16:35:46.7953519Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7953537Z         self.mapper,
+2026-06-16T16:35:46.7953552Z         ^^^^^^^^^^^^
+2026-06-16T16:35:46.7953570Z         uow.states_for_mapper_hierarchy(self.mapper, False, False),
+2026-06-16T16:35:46.7953588Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7953604Z         uow,
+2026-06-16T16:35:46.7953620Z         ^^^^
+2026-06-16T16:35:46.7953636Z     )
+2026-06-16T16:35:46.7953650Z     ^
+2026-06-16T16:35:46.7953670Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/persistence.py", line 86, in save_obj
+2026-06-16T16:35:46.7953686Z     _emit_update_statements(
+2026-06-16T16:35:46.7953729Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7953745Z         base_mapper,
+2026-06-16T16:35:46.7953760Z         ^^^^^^^^^^^^
+2026-06-16T16:35:46.7953777Z     ...<3 lines>...
+2026-06-16T16:35:46.7953793Z         update,
+2026-06-16T16:35:46.7953808Z         ^^^^^^^
+2026-06-16T16:35:46.7953824Z     )
+2026-06-16T16:35:46.7953839Z     ^
+2026-06-16T16:35:46.7953859Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/orm/persistence.py", line 913, in _emit_update_statements
+2026-06-16T16:35:46.7953875Z     c = connection.execute(
+2026-06-16T16:35:46.7953893Z         statement, multiparams, execution_options=execution_options
+2026-06-16T16:35:46.7953931Z     )
+2026-06-16T16:35:46.7953951Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+2026-06-16T16:35:46.7953966Z     return meth(
+2026-06-16T16:35:46.7953985Z         self,
+2026-06-16T16:35:46.7954002Z         distilled_parameters,
+2026-06-16T16:35:46.7954018Z         execution_options or NO_OPTIONS,
+2026-06-16T16:35:46.7954033Z     )
+2026-06-16T16:35:46.7954053Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+2026-06-16T16:35:46.7954070Z     return connection._execute_clauseelement(
+2026-06-16T16:35:46.7954086Z            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7954103Z         self, distilled_params, execution_options
+2026-06-16T16:35:46.7962450Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7962578Z     )
+2026-06-16T16:35:46.7962595Z     ^
+2026-06-16T16:35:46.7962616Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+2026-06-16T16:35:46.7962633Z     ret = self._execute_context(
+2026-06-16T16:35:46.7962650Z         dialect,
+2026-06-16T16:35:46.7962667Z     ...<8 lines>...
+2026-06-16T16:35:46.7962683Z         cache_hit=cache_hit,
+2026-06-16T16:35:46.7962699Z     )
+2026-06-16T16:35:46.7962718Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+2026-06-16T16:35:46.7962735Z     return self._exec_single_context(
+2026-06-16T16:35:46.7962751Z            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7968964Z         dialect, context, statement, parameters
+2026-06-16T16:35:46.7969001Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7969019Z     )
+2026-06-16T16:35:46.7969034Z     ^
+2026-06-16T16:35:46.7969054Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+2026-06-16T16:35:46.7969071Z     self._handle_dbapi_exception(
+2026-06-16T16:35:46.7969087Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.7969106Z         e, str_statement, effective_parameters, cursor, context
+2026-06-16T16:35:46.7969123Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.7969143Z     )
+2026-06-16T16:35:46.7969158Z     ^
+2026-06-16T16:35:46.8043767Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+2026-06-16T16:35:46.8043858Z     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+2026-06-16T16:35:46.8043879Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+2026-06-16T16:35:46.8043896Z     self.dialect.do_execute(
+2026-06-16T16:35:46.8043913Z     ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-16T16:35:46.8043931Z         cursor, str_statement, effective_parameters, context
+2026-06-16T16:35:46.8043949Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.8043965Z     )
+2026-06-16T16:35:46.8043980Z     ^
+2026-06-16T16:35:46.8044000Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-06-16T16:35:46.8044017Z     cursor.execute(statement, parameters)
+2026-06-16T16:35:46.8044072Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.8044092Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+2026-06-16T16:35:46.8044109Z     self._adapt_connection._handle_exception(error)
+2026-06-16T16:35:46.8044127Z     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+2026-06-16T16:35:46.8044147Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+2026-06-16T16:35:46.8044164Z     raise error.with_traceback(exc_info[2])
+2026-06-16T16:35:46.8044184Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+2026-06-16T16:35:46.8044202Z     return self.await_(self._execute_async(operation, parameters))
+2026-06-16T16:35:46.8044219Z            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.8044239Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+2026-06-16T16:35:46.8044278Z     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+2026-06-16T16:35:46.8044295Z            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+2026-06-16T16:35:46.8044315Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+2026-06-16T16:35:46.8044331Z     value = await result
+2026-06-16T16:35:46.8044347Z             ^^^^^^^^^^^^
+2026-06-16T16:35:46.8044602Z   File "/usr/local/lib/python3.14/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+2026-06-16T16:35:46.8044663Z     result = await self._cursor.execute(operation, parameters)
+2026-06-16T16:35:46.8044682Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.8044700Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 239, in execute
+2026-06-16T16:35:46.8044718Z     await self._query(query)
+2026-06-16T16:35:46.8044763Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/cursors.py", line 457, in _query
+2026-06-16T16:35:46.8044780Z     await conn.query(q)
+2026-06-16T16:35:46.8044799Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 469, in query
+2026-06-16T16:35:46.8044816Z     await self._read_query_result(unbuffered=unbuffered)
+2026-06-16T16:35:46.8044835Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+2026-06-16T16:35:46.8044852Z     await result.read()
+2026-06-16T16:35:46.8044870Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 1164, in read
+2026-06-16T16:35:46.8044889Z     first_packet = await self.connection._read_packet()
+2026-06-16T16:35:46.8044906Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:35:46.8044925Z   File "/usr/local/lib/python3.14/site-packages/aiomysql/connection.py", line 652, in _read_packet
+2026-06-16T16:35:46.8044942Z     packet.raise_for_error()
+2026-06-16T16:35:46.8044980Z     ~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-16T16:35:46.8044998Z   File "/usr/local/lib/python3.14/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+2026-06-16T16:35:46.8045016Z     err.raise_mysql_exception(self._data)
+2026-06-16T16:35:46.8045032Z     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+2026-06-16T16:35:46.8045052Z   File "/usr/local/lib/python3.14/site-packages/pymysql/err.py", line 154, in raise_mysql_exception
+2026-06-16T16:35:46.8045070Z     raise errorclass(errno, errval, sqlstate=sqlstate)
+2026-06-16T16:35:46.8045089Z sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1048, "Column 'name' cannot be null")
+2026-06-16T16:35:46.8045109Z [SQL: UPDATE projects SET name=%s, start_date=%s, end_date=%s, status=%s, updated_at=now(), updated_by=%s WHERE projects.id = %s]
+2026-06-16T16:35:46.8045126Z [parameters: (None, None, None, None, 'admin', 1)]
+2026-06-16T16:35:46.8045144Z (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-16T16:44:15.6430160Z [2026-06-16 16:44:15 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:44:15.6433677Z Traceback (most recent call last):
+2026-06-16T16:44:15.6433784Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:44:15.6433805Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:44:15.6433822Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:44:15.6433839Z         self.scope, self.receive, self.send
+2026-06-16T16:44:15.6433856Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:44:15.6433871Z     )
+2026-06-16T16:44:15.6433888Z     ^
+2026-06-16T16:44:15.6433907Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:44:15.6433925Z     return await self.app(scope, receive, send)
+2026-06-16T16:44:15.6433975Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:44:15.6433994Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:44:15.6434013Z     await super().__call__(scope, receive, send)
+2026-06-16T16:44:15.6434031Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:44:15.6434105Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:44:15.6434126Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:44:15.6434142Z     raise exc
+2026-06-16T16:44:15.6434161Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:44:15.6434179Z     await self.app(scope, receive, _send)
+2026-06-16T16:44:15.6434198Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+2026-06-16T16:44:15.6434215Z     await self.app(scope, receive, send)
+2026-06-16T16:44:15.6434252Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:44:15.6434270Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:44:15.6434290Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:44:15.6434306Z     raise exc
+2026-06-16T16:44:15.6434324Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:44:15.6434342Z     await app(scope, receive, sender)
+2026-06-16T16:44:15.6434361Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:44:15.6434378Z     await self.app(scope, receive, send)
+2026-06-16T16:44:15.6434396Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:44:15.6434413Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:44:15.6434454Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:44:15.6434473Z     await route.handle(scope, receive, send)
+2026-06-16T16:44:15.6434493Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:44:15.6434510Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:44:15.6434528Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:44:15.6434546Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:44:15.6434564Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:44:15.6434581Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:44:15.6434605Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:44:15.6434622Z     await app(scope, receive, send)
+2026-06-16T16:44:15.6434655Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:44:15.6434673Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:44:15.6434692Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:44:15.6434707Z     raise exc
+2026-06-16T16:44:15.6434725Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:44:15.6434741Z     await app(scope, receive, sender)
+2026-06-16T16:44:15.6434759Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:44:15.6434777Z     response = await f(request)
+2026-06-16T16:44:15.6434792Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:44:15.6434855Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:44:15.6434873Z     content = await serialize_response(
+2026-06-16T16:44:15.6434912Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:44:15.6434928Z     ...<11 lines>...
+2026-06-16T16:44:15.6434943Z     )
+2026-06-16T16:44:15.6434960Z     ^
+2026-06-16T16:44:15.6434979Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:44:15.6434995Z     raise ResponseValidationError(
+2026-06-16T16:44:15.6435011Z     ...<3 lines>...
+2026-06-16T16:44:15.6435026Z     )
+2026-06-16T16:44:15.6435044Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:44:15.6435430Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.project.Project object at 0x700bf4378650>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT projects.updated_at AS projects_updated_at \nFROM projects \nWHERE projects.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:44:15.6435451Z 
+2026-06-16T16:44:15.6435469Z   File "/app/app/routers/projects.py", line 90, in update_project
+2026-06-16T16:44:15.6435485Z     PUT /api/v1/projects/{project_id}
+2026-06-16T16:52:02.2495454Z [2026-06-16 16:52:02 +0000] [10] [ERROR] Exception in ASGI application
+2026-06-16T16:52:02.2496651Z Traceback (most recent call last):
+2026-06-16T16:52:02.2496685Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+2026-06-16T16:52:02.2496705Z     result = await app(  # type: ignore[func-returns-value]
+2026-06-16T16:52:02.2496722Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:52:02.2496739Z         self.scope, self.receive, self.send
+2026-06-16T16:52:02.2496758Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:52:02.2496773Z     )
+2026-06-16T16:52:02.2496788Z     ^
+2026-06-16T16:52:02.2496809Z   File "/usr/local/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-06-16T16:52:02.2496826Z     return await self.app(scope, receive, send)
+2026-06-16T16:52:02.2496872Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:52:02.2496892Z   File "/usr/local/lib/python3.14/site-packages/fastapi/applications.py", line 1162, in __call__
+2026-06-16T16:52:02.2496909Z     await super().__call__(scope, receive, send)
+2026-06-16T16:52:02.2496929Z   File "/usr/local/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+2026-06-16T16:52:02.2496946Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:52:02.2496965Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-06-16T16:52:02.2496982Z     raise exc
+2026-06-16T16:52:02.2497000Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-06-16T16:52:02.2497018Z     await self.app(scope, receive, _send)
+2026-06-16T16:52:02.2497037Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+2026-06-16T16:52:02.2497069Z     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-16T16:52:02.2497090Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+2026-06-16T16:52:02.2497107Z     await self.app(scope, receive, send)
+2026-06-16T16:52:02.2497125Z   File "/usr/local/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-06-16T16:52:02.2497145Z     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-16T16:52:02.2497163Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:52:02.2497179Z     raise exc
+2026-06-16T16:52:02.2497197Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:52:02.2497214Z     await app(scope, receive, sender)
+2026-06-16T16:52:02.2497234Z   File "/usr/local/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-06-16T16:52:02.2497251Z     await self.app(scope, receive, send)
+2026-06-16T16:52:02.2497324Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+2026-06-16T16:52:02.2497342Z     await self.middleware_stack(scope, receive, send)
+2026-06-16T16:52:02.2497361Z   File "/usr/local/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+2026-06-16T16:52:02.2497378Z     await route.handle(scope, receive, send)
+2026-06-16T16:52:02.2497397Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1609, in handle
+2026-06-16T16:52:02.2497415Z     await self.original_router.handle(scope, receive, send)
+2026-06-16T16:52:02.2497434Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 2047, in handle
+2026-06-16T16:52:02.2497451Z     await included_router._handle_selected(scope, receive, send)
+2026-06-16T16:52:02.2497471Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1629, in _handle_selected
+2026-06-16T16:52:02.2497488Z     await original_route.handle(scope, receive, send)
+2026-06-16T16:52:02.2497520Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 1218, in handle
+2026-06-16T16:52:02.2497537Z     await app(scope, receive, send)
+2026-06-16T16:52:02.2497555Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 143, in app
+2026-06-16T16:52:02.2497573Z     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-16T16:52:02.2497592Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-06-16T16:52:02.2497607Z     raise exc
+2026-06-16T16:52:02.2497626Z   File "/usr/local/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-06-16T16:52:02.2497643Z     await app(scope, receive, sender)
+2026-06-16T16:52:02.2497662Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 129, in app
+2026-06-16T16:52:02.2497678Z     response = await f(request)
+2026-06-16T16:52:02.2497694Z                ^^^^^^^^^^^^^^^^
+2026-06-16T16:52:02.2497725Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 704, in app
+2026-06-16T16:52:02.2497742Z     content = await serialize_response(
+2026-06-16T16:52:02.2497758Z               ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-16T16:52:02.2497774Z     ...<11 lines>...
+2026-06-16T16:52:02.2497790Z     )
+2026-06-16T16:52:02.2497805Z     ^
+2026-06-16T16:52:02.2497823Z   File "/usr/local/lib/python3.14/site-packages/fastapi/routing.py", line 309, in serialize_response
+2026-06-16T16:52:02.2497840Z     raise ResponseValidationError(
+2026-06-16T16:52:02.2497856Z     ...<3 lines>...
+2026-06-16T16:52:02.2497871Z     )
+2026-06-16T16:52:02.2497889Z fastapi.exceptions.ResponseValidationError: 1 validation error:
+2026-06-16T16:52:02.2498258Z   {'type': 'get_attribute_error', 'loc': ('response', 'updated_at'), 'msg': "Error extracting attribute: StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)", 'input': <app.models.task.Task object at 0x700bf4366a50>, 'ctx': {'error': "StatementError: (sqlalchemy.exc.MissingGreenlet) greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place?\n[SQL: SELECT tasks.updated_at AS tasks_updated_at \nFROM tasks \nWHERE tasks.id = %s]\n[parameters: [{'pk_1': 1}]]\n(Background on this error at: https://sqlalche.me/e/20/xd2s)"}}
+2026-06-16T16:52:02.2498277Z 
+2026-06-16T16:52:02.2498295Z   File "/app/app/routers/tasks.py", line 46, in update_task
+2026-06-16T16:52:02.2498311Z     PUT /api/v1/tasks/{task_id}
+2026-06-16T16:53:02.1010757Z [2026-06-16 16:53:02 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T16:53:02.1118046Z [2026-06-16 16:53:02 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T16:53:02.1222141Z [2026-06-16 16:53:02 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T16:53:02.1622906Z [2026-06-16 16:53:02 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T16:53:02.2940886Z [2026-06-16 16:53:02 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T16:53:02.3342315Z [2026-06-16 16:53:02 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T16:53:02.4837833Z [2026-06-16 16:53:02 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T16:53:02.9464074Z [2026-06-16 16:53:02 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T16:53:36.9305229Z [2026-06-16 16:53:36 +0000] [10] [INFO] Started server process [10]
+2026-06-16T16:53:36.9480067Z [2026-06-16 16:53:36 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T16:53:36.9483626Z [2026-06-16 16:53:36 +0000] [10] [INFO] Application startup complete.
+2026-06-16T16:53:36.9592479Z [2026-06-16 16:53:36 +0000] [9] [INFO] Started server process [9]
+2026-06-16T16:53:36.9610664Z [2026-06-16 16:53:36 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T16:53:36.9782854Z [2026-06-16 16:53:36 +0000] [9] [INFO] Application startup complete.
+2026-06-16T16:53:36.9791947Z [2026-06-16 16:53:36 +0000] [8] [INFO] Started server process [8]
+2026-06-16T16:53:36.9799815Z [2026-06-16 16:53:36 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T16:53:36.9885598Z [2026-06-16 16:53:36 +0000] [8] [INFO] Application startup complete.
+2026-06-16T16:53:37.0305768Z [2026-06-16 16:53:37 +0000] [7] [INFO] Started server process [7]
+2026-06-16T16:53:37.0313737Z [2026-06-16 16:53:37 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T16:53:37.0484863Z [2026-06-16 16:53:37 +0000] [7] [INFO] Application startup complete.
+2026-06-16T16:53:59.5501635Z [Previous Container] [2026-06-16 16:53:59 +0000] [1] [INFO] Handling signal: term
+2026-06-16T16:53:59.5615019Z [Previous Container] [2026-06-16 16:53:59 +0000] [7] [INFO] Shutting down
+2026-06-16T16:53:59.5634106Z [Previous Container] [2026-06-16 16:53:59 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:53:59.5714005Z [Previous Container] [2026-06-16 16:53:59 +0000] [10] [INFO] Shutting down
+2026-06-16T16:53:59.5729788Z [Previous Container] [2026-06-16 16:53:59 +0000] [8] [INFO] Shutting down
+2026-06-16T16:53:59.5805247Z [Previous Container] [2026-06-16 16:53:59 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:53:59.5827111Z [Previous Container] [2026-06-16 16:53:59 +0000] [9] [INFO] Shutting down
+2026-06-16T16:53:59.5904853Z [Previous Container] [2026-06-16 16:53:59 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:53:59.5928738Z [Previous Container] [2026-06-16 16:53:59 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T16:53:59.6651249Z [Previous Container] [2026-06-16 16:53:59 +0000] [7] [INFO] Waiting for application shutdown.
+2026-06-16T16:53:59.6661662Z [Previous Container] [2026-06-16 16:53:59 +0000] [7] [INFO] Application shutdown complete.
+2026-06-16T16:53:59.6661790Z [Previous Container] [2026-06-16 16:53:59 +0000] [7] [INFO] Finished server process [7]
+2026-06-16T16:53:59.6850430Z [Previous Container] [2026-06-16 16:53:59 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T16:53:59.6861995Z [Previous Container] [2026-06-16 16:53:59 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T16:53:59.6868898Z [Previous Container] [2026-06-16 16:53:59 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T16:53:59.7352071Z [Previous Container] [2026-06-16 16:53:59 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T16:53:59.7362946Z [Previous Container] [2026-06-16 16:53:59 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T16:53:59.8352111Z [Previous Container] [2026-06-16 16:53:59 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T16:53:59.8454609Z [Previous Container] [2026-06-16 16:53:59 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T16:54:00.0263668Z [Previous Container] [2026-06-16 16:54:00 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T16:54:00.0264038Z [Previous Container] [2026-06-16 16:54:00 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T16:54:00.1482184Z [Previous Container] [2026-06-16 16:54:00 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T16:54:00.1777437Z [Previous Container] [2026-06-16 16:54:00 +0000] [1] [INFO] Worker (pid:7) was sent SIGTERM!
+2026-06-16T16:54:00.1778262Z [Previous Container] [2026-06-16 16:54:00 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T16:54:00.1778288Z [Previous Container] [2026-06-16 16:54:00 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T16:54:00.2797840Z [Previous Container] [2026-06-16 16:54:00 +0000] [1] [INFO] Shutting down: Master
+2026-06-16T16:59:17.8179188Z [2026-06-16 16:59:17 +0000] [1] [INFO] Starting gunicorn 26.0.0
+2026-06-16T16:59:17.8272458Z [2026-06-16 16:59:17 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+2026-06-16T16:59:17.8280887Z [2026-06-16 16:59:17 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+2026-06-16T16:59:17.9688512Z [2026-06-16 16:59:17 +0000] [8] [INFO] Booting worker with pid: 8
+2026-06-16T16:59:17.9796040Z [2026-06-16 16:59:17 +0000] [7] [INFO] Booting worker with pid: 7
+2026-06-16T16:59:18.1480177Z [2026-06-16 16:59:18 +0000] [9] [INFO] Booting worker with pid: 9
+2026-06-16T16:59:18.3100075Z [2026-06-16 16:59:18 +0000] [10] [INFO] Booting worker with pid: 10
+2026-06-16T16:59:18.5017544Z [2026-06-16 16:59:18 +0000] [1] [ERROR] Control server error: [Errno 13] Permission denied
+2026-06-16T17:00:33.6605766Z [2026-06-16 17:00:33 +0000] [10] [INFO] Started server process [10]
+2026-06-16T17:00:33.6997901Z [2026-06-16 17:00:33 +0000] [8] [INFO] Started server process [8]
+2026-06-16T17:00:33.6998479Z [2026-06-16 17:00:33 +0000] [8] [INFO] Waiting for application startup.
+2026-06-16T17:00:33.6998521Z [2026-06-16 17:00:33 +0000] [10] [INFO] Waiting for application startup.
+2026-06-16T17:00:33.6998549Z [2026-06-16 17:00:33 +0000] [7] [INFO] Started server process [7]
+2026-06-16T17:00:33.6998648Z [2026-06-16 17:00:33 +0000] [7] [INFO] Waiting for application startup.
+2026-06-16T17:00:33.6999338Z [2026-06-16 17:00:33 +0000] [9] [INFO] Started server process [9]
+2026-06-16T17:00:33.6999372Z [2026-06-16 17:00:33 +0000] [9] [INFO] Waiting for application startup.
+2026-06-16T17:00:33.6999398Z [2026-06-16 17:00:33 +0000] [10] [INFO] Application startup complete.
+2026-06-16T17:00:33.6999422Z [2026-06-16 17:00:33 +0000] [9] [INFO] Application startup complete.
+2026-06-16T17:00:33.6999451Z [2026-06-16 17:00:33 +0000] [8] [INFO] Application startup complete.
+2026-06-16T17:00:33.6999475Z [2026-06-16 17:00:33 +0000] [7] [INFO] Application startup complete.
+2026-06-16T17:01:06.0455589Z [Previous Container] [2026-06-16 17:01:05 +0000] [1] [INFO] Handling signal: term
+2026-06-16T17:01:06.1425071Z [Previous Container] [2026-06-16 17:01:06 +0000] [7] [INFO] Shutting down
+2026-06-16T17:01:06.1517828Z [Previous Container] [2026-06-16 17:01:06 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T17:01:06.2601296Z [Previous Container] [2026-06-16 17:01:06 +0000] [7] [INFO] Waiting for application shutdown.
+2026-06-16T17:01:06.2693525Z [Previous Container] [2026-06-16 17:01:06 +0000] [9] [INFO] Shutting down
+2026-06-16T17:01:06.2792150Z [Previous Container] [2026-06-16 17:01:06 +0000] [7] [INFO] Application shutdown complete.
+2026-06-16T17:01:06.2797643Z [Previous Container] [2026-06-16 17:01:06 +0000] [7] [INFO] Finished server process [7]
+2026-06-16T17:01:06.3792315Z [Previous Container] [2026-06-16 17:01:06 +0000] [8] [INFO] Shutting down
+2026-06-16T17:01:06.4075631Z [Previous Container] [2026-06-16 17:01:06 +0000] [9] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T17:01:06.4089600Z [Previous Container] [2026-06-16 17:01:06 +0000] [10] [INFO] Shutting down
+2026-06-16T17:01:06.4092071Z [Previous Container] [2026-06-16 17:01:06 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T17:01:06.4776197Z [Previous Container] [2026-06-16 17:01:06 +0000] [1] [INFO] Worker (pid:7) was sent SIGTERM!
+2026-06-16T17:01:06.5947845Z [Previous Container] [2026-06-16 17:01:06 +0000] [8] [INFO] Waiting for application shutdown.
+2026-06-16T17:01:06.6562074Z [Previous Container] [2026-06-16 17:01:06 +0000] [9] [INFO] Waiting for application shutdown.
+2026-06-16T17:01:06.7138311Z [Previous Container] [2026-06-16 17:01:06 +0000] [9] [INFO] Application shutdown complete.
+2026-06-16T17:01:06.7327030Z [Previous Container] [2026-06-16 17:01:06 +0000] [8] [INFO] Application shutdown complete.
+2026-06-16T17:01:06.7333174Z [Previous Container] [2026-06-16 17:01:06 +0000] [9] [INFO] Finished server process [9]
+2026-06-16T17:01:06.7526821Z [Previous Container] [2026-06-16 17:01:06 +0000] [8] [INFO] Finished server process [8]
+2026-06-16T17:01:06.8014431Z [Previous Container] [2026-06-16 17:01:06 +0000] [10] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+2026-06-16T17:01:07.0319866Z [Previous Container] [2026-06-16 17:01:07 +0000] [1] [INFO] Worker (pid:8) was sent SIGTERM!
+2026-06-16T17:01:07.0332312Z [Previous Container] [2026-06-16 17:01:07 +0000] [1] [INFO] Worker (pid:9) was sent SIGTERM!
+2026-06-16T17:01:07.1831854Z [Previous Container] [2026-06-16 17:01:07 +0000] [10] [INFO] Waiting for application shutdown.
+2026-06-16T17:01:07.4761740Z [Previous Container] [2026-06-16 17:01:07 +0000] [10] [INFO] Application shutdown complete.
+2026-06-16T17:01:07.4865561Z [Previous Container] [2026-06-16 17:01:07 +0000] [10] [INFO] Finished server process [10]
+2026-06-16T17:01:07.6563648Z [Previous Container] [2026-06-16 17:01:07 +0000] [1] [INFO] Worker (pid:10) was sent SIGTERM!
+2026-06-16T17:01:07.7698820Z [Previous Container] [2026-06-16 17:01:07 +0000] [1] [INFO] Shutting down: Master

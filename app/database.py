@@ -45,7 +45,7 @@ AsyncSessionLocal: async_sessionmaker[AsyncSession] = async_sessionmaker(
 
 
 class Base(DeclarativeBase):
-
+    pass
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """FastAPI dependency that provides an async database session."""
