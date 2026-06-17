@@ -6,6 +6,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.security import get_current_user
 from app.database import get_db
 from app.models.task import TaskStatus
 from app.schemas.task import TaskCreate, TaskRead, TaskUpdate
@@ -26,8 +27,9 @@ async def list_tasks(
 async def create_task(
     data: TaskCreate,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    return await task_service.create_task(session, data)
+    return await task_service.create_task(session, data, performed_by=current_user)
 
 
 @router.get("/{task_id}", response_model=TaskRead)
@@ -57,6 +59,7 @@ async def update_task(
     # New file uploads
     new_files: List[UploadFile] = File(default=[]),
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
 
     try:
@@ -74,7 +77,6 @@ async def update_task(
         parent_id=parent_id,
     )
 
- 
     valid_files = [f for f in new_files if f.filename]
 
     task = await task_service.update_task(
@@ -82,7 +84,8 @@ async def update_task(
         task_id,
         update_data,
         keep_ids,
-        valid_files if valid_files else None,
+        performed_by=current_user,
+        new_files=valid_files if valid_files else None,
     )
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found")
@@ -93,8 +96,9 @@ async def update_task(
 async def delete_task(
     task_id: int,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
 
-    deleted = await task_service.delete_task(session, task_id)
+    deleted = await task_service.delete_task(session, task_id, performed_by=current_user)
     if not deleted:
         raise HTTPException(status_code=404, detail="Task not found")

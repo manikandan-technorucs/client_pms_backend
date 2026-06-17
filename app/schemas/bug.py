@@ -1,7 +1,7 @@
 """Pydantic v2 schemas for Bug."""
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
@@ -55,3 +55,7 @@ class BugRead(BugBase):
     parent_id: Optional[int] = None
     attachments: List[AttachmentRead] = []
     sub_bugs: List["BugRead"] = []
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    created_by: Optional[str] = None
+    updated_by: Optional[str] = None

@@ -10,6 +10,7 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, Response, Upl
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.security import get_current_user
 from app.database import get_db
 from app.models.attachment import Attachment
 from app.models.bug import Bug
@@ -58,8 +59,9 @@ async def create_project(
     project_status: Optional[str] = Form(None, alias="status"),
     new_files: List[UploadFile] = File(default=[]),
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    """Create a new project."""
+    """Create a new project. Requires authentication."""
     data = ProjectCreate(
         name=name,
         description=description,
@@ -69,7 +71,7 @@ async def create_project(
     )
     valid_files = [f for f in new_files if f.filename]
     return await project_service.create_project(
-        session, data, valid_files if valid_files else None
+        session, data, performed_by=current_user, new_files=valid_files if valid_files else None
     )
 
 
@@ -96,8 +98,9 @@ async def update_project(
     keep_attachment_ids: str = Form("[]"),
     new_files: List[UploadFile] = File(default=[]),
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    """Update a project's scalar fields and attachments."""
+    """Update a project's scalar fields and attachments. Requires authentication."""
     try:
         keep_ids: List[int] = json.loads(keep_attachment_ids)
     except (json.JSONDecodeError, ValueError):
@@ -113,7 +116,10 @@ async def update_project(
 
     valid_files = [f for f in new_files if f.filename]
     project = await project_service.update_project(
-        session, project_id, data, keep_ids, valid_files if valid_files else None
+        session, project_id, data,
+        performed_by=current_user,
+        keep_ids=keep_ids,
+        new_files=valid_files if valid_files else None,
     )
     if project is None:
         raise HTTPException(status_code=404, detail="Project not found")
@@ -124,9 +130,10 @@ async def update_project(
 async def delete_project(
     project_id: int,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    """Delete a project (cascades to tasks, bugs, attachments)."""
-    deleted = await project_service.delete_project(session, project_id)
+    """Delete a project (cascades to tasks, bugs, attachments). Requires authentication."""
+    deleted = await project_service.delete_project(session, project_id, performed_by=current_user)
     if not deleted:
         raise HTTPException(status_code=404, detail="Project not found")
 
@@ -142,8 +149,9 @@ async def upload_project_attachments(
     project_id: int,
     new_files: List[UploadFile] = File(...),
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    """Upload one or more files and attach them to a project."""
+    """Upload one or more files and attach them to a project. Requires authentication."""
     project = await project_service.get_project(session, project_id)
     if project is None:
         raise HTTPException(status_code=404, detail="Project not found")
@@ -167,8 +175,9 @@ async def delete_project_attachment(
     project_id: int,
     attachment_id: int,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    """Remove a single attachment from a project."""
+    """Remove a single attachment from a project. Requires authentication."""
     result = await session.execute(
         select(Attachment).where(
             Attachment.id == attachment_id,

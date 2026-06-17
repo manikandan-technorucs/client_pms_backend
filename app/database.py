@@ -45,7 +45,6 @@ AsyncSessionLocal: async_sessionmaker[AsyncSession] = async_sessionmaker(
 
 
 class Base(DeclarativeBase):
-    """Declarative base for all ORM models."""
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:

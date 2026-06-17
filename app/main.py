@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
 from app.core.config import settings
-from app.routers import auth, bugs, projects, tasks, attachments
+from app.routers import auth, bugs, projects, tasks, attachments, audit
 
 # Initialize Sentry
 if settings.SENTRY_DSN:
@@ -47,6 +47,7 @@ app.include_router(projects.router, prefix="/api/v1")
 app.include_router(tasks.router, prefix="/api/v1")
 app.include_router(bugs.router, prefix="/api/v1")
 app.include_router(attachments.router, prefix="/api/v1")
+app.include_router(audit.router, prefix="/api/v1")
 
 
 @app.get("/", tags=["Health"])

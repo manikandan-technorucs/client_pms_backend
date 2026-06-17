@@ -6,6 +6,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.security import get_current_user
 from app.database import get_db
 from app.models.bug import BugStatus
 from app.schemas.bug import BugCreate, BugRead, BugUpdate
@@ -26,8 +27,9 @@ async def list_bugs(
 async def create_bug(
     data: BugCreate,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    return await bug_service.create_bug(session, data)
+    return await bug_service.create_bug(session, data, performed_by=current_user)
 
 
 @router.get("/{bug_id}", response_model=BugRead)
@@ -58,6 +60,7 @@ async def update_bug(
     # New file uploads
     new_files: List[UploadFile] = File(default=[]),
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
 
     try:
@@ -84,7 +87,8 @@ async def update_bug(
         bug_id,
         update_data,
         keep_ids,
-        valid_files if valid_files else None,
+        performed_by=current_user,
+        new_files=valid_files if valid_files else None,
     )
     if bug is None:
         raise HTTPException(status_code=404, detail="Bug not found")
@@ -95,7 +99,8 @@ async def update_bug(
 async def delete_bug(
     bug_id: int,
     session: AsyncSession = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
-    deleted = await bug_service.delete_bug(session, bug_id)
+    deleted = await bug_service.delete_bug(session, bug_id, performed_by=current_user)
     if not deleted:
         raise HTTPException(status_code=404, detail="Bug not found")

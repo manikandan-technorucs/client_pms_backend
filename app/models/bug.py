@@ -8,6 +8,7 @@ from sqlalchemy import Date, Enum, ForeignKey, JSON, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+from app.models.mixins import TimestampMixin
 
 if TYPE_CHECKING:
     from app.models.attachment import Attachment
@@ -22,7 +23,7 @@ class BugStatus(str, enum.Enum):
     closed = "closed"
 
 
-class Bug(Base):
+class Bug(Base, TimestampMixin):
     """Bug entity — can be linked to a task or standalone under a project."""
 
     __tablename__ = "bugs"

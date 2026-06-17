@@ -8,9 +8,11 @@ from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
+from app.models.audit_log import AuditAction
 from app.models.task import Task
 from app.schemas.task import TaskCreate, TaskUpdate
 from app.services import attachment_service
+from app.services.audit_service import build_diff, build_snapshot, log_action
 
 
 def _load_options():
@@ -46,15 +48,24 @@ async def get_task(session: AsyncSession, task_id: int) -> Optional[Task]:
 async def create_task(
     session: AsyncSession,
     data: TaskCreate,
+    performed_by: str,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Task:
-    """Create a task and optionally attach files."""
-    task = Task(**data.model_dump())
+    """Create a task, set created_by, and write an audit log entry."""
+    task = Task(**data.model_dump(), created_by=performed_by, updated_by=performed_by)
     session.add(task)
     await session.flush()
     if new_files:
         await attachment_service.save_files(session, new_files, task_id=task.id)
-    await session.refresh(task, attribute_names=["attachments", "subtasks"])
+    await log_action(
+        session,
+        entity_type="task",
+        entity_id=task.id,
+        action=AuditAction.create,
+        performed_by=performed_by,
+        changes=build_snapshot(task, exclude=("created_at", "updated_at")),
+    )
+    await session.refresh(task, attribute_names=["attachments", "subtasks", "created_at", "updated_at"])
     return task
 
 
@@ -63,15 +74,21 @@ async def update_task(
     task_id: int,
     data: TaskUpdate,
     keep_attachment_ids: List[int],
+    performed_by: str,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Optional[Task]:
-    """Update task fields and synchronize attachments."""
+    """Update task fields and synchronize attachments, log the diff."""
     task = await get_task(session, task_id)
     if task is None:
         return None
+
+    old_snapshot = build_snapshot(task, exclude=("created_at", "updated_at"))
+
     update_data = data.model_dump(exclude_unset=True)
     for field, value in update_data.items():
         setattr(task, field, value)
+    task.updated_by = performed_by
+
     await session.flush()
     await attachment_service.sync_attachments(
         session,
@@ -79,11 +96,23 @@ async def update_task(
         task_id=task_id,
         new_files=new_files,
     )
-    await session.refresh(task, attribute_names=["attachments", "subtasks"])
+
+    diff = build_diff(old_snapshot, task, exclude=("created_at", "updated_at"))
+    if diff:
+        await log_action(
+            session,
+            entity_type="task",
+            entity_id=task_id,
+            action=AuditAction.update,
+            performed_by=performed_by,
+            changes=diff,
+        )
+
+    await session.refresh(task, attribute_names=["attachments", "subtasks", "updated_at"])
     return task
 
 
-async def delete_task(session: AsyncSession, task_id: int) -> bool:
+async def delete_task(session: AsyncSession, task_id: int, performed_by: str) -> bool:
     """Delete a task using an optimized DELETE statement.
 
     DB CASCADE handles subtasks and attachment rows. We only need to
@@ -102,6 +131,16 @@ async def delete_task(session: AsyncSession, task_id: int) -> bool:
         select(Attachment.file_path).where(Attachment.task_id == task_id)
     )
     file_paths = [row[0] for row in att_result.fetchall()]
+
+    # Log deletion BEFORE the row disappears
+    await log_action(
+        session,
+        entity_type="task",
+        entity_id=task_id,
+        action=AuditAction.delete,
+        performed_by=performed_by,
+        changes={"deleted_id": task_id},
+    )
 
     # Raw DELETE — CASCADE handles subtasks and their attachments in DB
     await session.execute(delete(Task).where(Task.id == task_id))

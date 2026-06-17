@@ -9,9 +9,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.models.attachment import Attachment
+from app.models.audit_log import AuditAction
 from app.models.project import Project
 from app.schemas.project import ProjectCreate, ProjectUpdate
 from app.services import attachment_service
+from app.services.audit_service import build_diff, build_snapshot, log_action
 
 
 def _list_options():
@@ -53,17 +55,26 @@ async def get_project(session: AsyncSession, project_id: int) -> Optional[Projec
 async def create_project(
     session: AsyncSession,
     data: ProjectCreate,
+    performed_by: str,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Project:
-    """Create a project and optionally attach files."""
-    project = Project(**data.model_dump())
+    """Create a project, set created_by, and write an audit log entry."""
+    project = Project(**data.model_dump(), created_by=performed_by, updated_by=performed_by)
     session.add(project)
     await session.flush()  # get project.id
     if new_files:
         await attachment_service.save_files(
             session, new_files, project_id=project.id
         )
-    await session.refresh(project, attribute_names=["attachments"])
+    await log_action(
+        session,
+        entity_type="project",
+        entity_id=project.id,
+        action=AuditAction.create,
+        performed_by=performed_by,
+        changes=build_snapshot(project, exclude=("created_at", "updated_at")),
+    )
+    await session.refresh(project, attribute_names=["attachments", "created_at", "updated_at"])
     return project
 
 
@@ -71,17 +82,22 @@ async def update_project(
     session: AsyncSession,
     project_id: int,
     data: ProjectUpdate,
+    performed_by: str,
     keep_ids: Optional[Sequence[int]] = None,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Optional[Project]:
-    """Update scalar fields and attachments of a project."""
+    """Update scalar fields and attachments of a project, log the diff."""
     project = await get_project(session, project_id)
     if project is None:
         return None
 
+    # Snapshot before changes
+    old_snapshot = build_snapshot(project, exclude=("created_at", "updated_at"))
+
     update_data = data.model_dump(exclude_unset=True)
     for field, value in update_data.items():
         setattr(project, field, value)
+    project.updated_by = performed_by
 
     # Sync attachments
     if keep_ids is not None:
@@ -94,12 +110,24 @@ async def update_project(
         )
 
     await session.flush()
-    await session.refresh(project, attribute_names=["attachments"])
+
+    diff = build_diff(old_snapshot, project, exclude=("created_at", "updated_at"))
+    if diff:
+        await log_action(
+            session,
+            entity_type="project",
+            entity_id=project_id,
+            action=AuditAction.update,
+            performed_by=performed_by,
+            changes=diff,
+        )
+
+    await session.refresh(project, attribute_names=["attachments", "updated_at"])
     return project
 
 
-async def delete_project(session: AsyncSession, project_id: int) -> bool:
-    """Delete a project using an optimized DELETE statement.
+async def delete_project(session: AsyncSession, project_id: int, performed_by: str) -> bool:
+    """Delete a project using an optimized DELETE statement and log the event.
 
     Instead of loading the full ORM object (with all eager-loaded relations)
     just to call session.delete(), we:
@@ -121,13 +149,22 @@ async def delete_project(session: AsyncSession, project_id: int) -> bool:
     )
     file_paths = [row[0] for row in att_result.fetchall()]
 
+    # Log deletion BEFORE the row disappears
+    await log_action(
+        session,
+        entity_type="project",
+        entity_id=project_id,
+        action=AuditAction.delete,
+        performed_by=performed_by,
+        changes={"deleted_id": project_id},
+    )
+
     # Raw DELETE — CASCADE deletes tasks, bugs, and attachment rows
     await session.execute(delete(Project).where(Project.id == project_id))
 
     # Remove physical files concurrently (non-blocking)
     if file_paths:
         import asyncio
-        import os
         await asyncio.gather(
             *(attachment_service._remove_file_async(p) for p in file_paths)
         )

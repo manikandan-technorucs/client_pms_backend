@@ -8,6 +8,7 @@ from sqlalchemy import Date, Enum, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+from app.models.mixins import TimestampMixin
 
 if TYPE_CHECKING:
     from app.models.attachment import Attachment
@@ -21,7 +22,7 @@ class ProjectStatus(str, enum.Enum):
     closed = "closed"
 
 
-class Project(Base):
+class Project(Base, TimestampMixin):
 
     __tablename__ = "projects"
 

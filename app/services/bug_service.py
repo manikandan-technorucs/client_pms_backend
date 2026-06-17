@@ -8,9 +8,11 @@ from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
+from app.models.audit_log import AuditAction
 from app.models.bug import Bug
 from app.schemas.bug import BugCreate, BugUpdate
 from app.services import attachment_service
+from app.services.audit_service import build_diff, build_snapshot, log_action
 
 
 def _load_options():
@@ -46,15 +48,28 @@ async def get_bug(session: AsyncSession, bug_id: int) -> Optional[Bug]:
 async def create_bug(
     session: AsyncSession,
     data: BugCreate,
+    performed_by: str,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Bug:
-    """Create a bug and optionally attach files."""
-    bug = Bug(**data.model_dump())
+    """Create a bug, set created_by, and write an audit log entry.
+
+    Note: `reporter` remains a separate free-text field (Option A).
+    `created_by` is always the authenticated user from the JWT.
+    """
+    bug = Bug(**data.model_dump(), created_by=performed_by, updated_by=performed_by)
     session.add(bug)
     await session.flush()
     if new_files:
         await attachment_service.save_files(session, new_files, bug_id=bug.id)
-    await session.refresh(bug, attribute_names=["attachments", "sub_bugs"])
+    await log_action(
+        session,
+        entity_type="bug",
+        entity_id=bug.id,
+        action=AuditAction.create,
+        performed_by=performed_by,
+        changes=build_snapshot(bug, exclude=("created_at", "updated_at")),
+    )
+    await session.refresh(bug, attribute_names=["attachments", "sub_bugs", "created_at", "updated_at"])
     return bug
 
 
@@ -63,15 +78,21 @@ async def update_bug(
     bug_id: int,
     data: BugUpdate,
     keep_attachment_ids: List[int],
+    performed_by: str,
     new_files: Optional[Sequence[UploadFile]] = None,
 ) -> Optional[Bug]:
-    """Update bug fields and synchronize attachments."""
+    """Update bug fields and synchronize attachments, log the diff."""
     bug = await get_bug(session, bug_id)
     if bug is None:
         return None
+
+    old_snapshot = build_snapshot(bug, exclude=("created_at", "updated_at"))
+
     update_data = data.model_dump(exclude_unset=True)
     for field, value in update_data.items():
         setattr(bug, field, value)
+    bug.updated_by = performed_by
+
     await session.flush()
     await attachment_service.sync_attachments(
         session,
@@ -79,11 +100,23 @@ async def update_bug(
         bug_id=bug_id,
         new_files=new_files,
     )
-    await session.refresh(bug, attribute_names=["attachments", "sub_bugs"])
+
+    diff = build_diff(old_snapshot, bug, exclude=("created_at", "updated_at"))
+    if diff:
+        await log_action(
+            session,
+            entity_type="bug",
+            entity_id=bug_id,
+            action=AuditAction.update,
+            performed_by=performed_by,
+            changes=diff,
+        )
+
+    await session.refresh(bug, attribute_names=["attachments", "sub_bugs", "updated_at"])
     return bug
 
 
-async def delete_bug(session: AsyncSession, bug_id: int) -> bool:
+async def delete_bug(session: AsyncSession, bug_id: int, performed_by: str) -> bool:
     """Delete a bug using an optimized DELETE statement.
 
     DB CASCADE handles sub-bugs and attachment rows. We only need to
@@ -102,6 +135,16 @@ async def delete_bug(session: AsyncSession, bug_id: int) -> bool:
         select(Attachment.file_path).where(Attachment.bug_id == bug_id)
     )
     file_paths = [row[0] for row in att_result.fetchall()]
+
+    # Log deletion BEFORE the row disappears
+    await log_action(
+        session,
+        entity_type="bug",
+        entity_id=bug_id,
+        action=AuditAction.delete,
+        performed_by=performed_by,
+        changes={"deleted_id": bug_id},
+    )
 
     # Raw DELETE — CASCADE handles sub-bugs and their attachments in DB
     await session.execute(delete(Bug).where(Bug.id == bug_id))
